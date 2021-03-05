@@ -1,0 +1,72 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-auto mx-auto">
+      <h3>アカウント情報を変更する</h3>
+    </div>
+  </div>
+  <%= form_with model: @user, url: user_path, local:true do |f| %>
+    <div class="row justify-content-center mt-md-4">
+      <div class="col-auto mx-auto">
+        <%= attachment_image_tag(@user, :profile_image, fallback: "no_image.jpg", size:'100x100') %>
+      </div>
+    </div>
+    <div class="row justify-content-center mt-md-3">
+      <div class="col-md-2">
+        フルネーム
+      </div>
+      <div class="col-md-2">
+        <%= f.text_field :name %>
+      </div>
+    </div>
+    <div class="row justify-content-center mt-md-3">
+      <div class="col-md-2">
+        ユーザーネーム
+      </div>
+      <div class="col-md-2">
+        <%= f.text_field :user_name %>
+      </div>
+    </div>
+    <div class="row justify-content-center mt-md-3">
+      <div class="col-md-2">
+        アカウント画像
+      </div>
+      <div class="col-md-2">
+        <%= f.attachment_field :profile_image %>
+      </div>
+    </div>
+    <div class="row justify-content-center mt-md-3">
+      <div class="col-md-2">
+        自己紹介
+      </div>
+      <div class="col-md-2">
+        <%= f.text_area :introduction, rows:"8" %>
+      </div>
+    </div>
+    <div class="row justify-content-center mt-md-3">
+      <div class="col-md-2">
+        電話番号
+      </div>
+      <div class="col-md-2">
+        <%= f.text_field :phone_number %>
+      </div>
+    </div>
+    <div class="row justify-content-center mt-md-3">
+      <div class="col-md-2">
+        メールアドレス
+      </div>
+      <div class="col-md-2">
+        <%= f.text_field :email %>
+      </div>
+    </div>
+    <div class="row justify-content-center mt-md-4">
+      <div class="col-auto mx-auto">
+        <%= f.submit '変更内容を保存する', class: 'btn btn-success submit_botton' %>
+      </div>
+    </div>
+  <% end %>
+  <div class="row justify-content-center mt-md-3">
+      <div class="col-auto mx-auto">
+        <%= link_to '退会する', users_unsubscribe_path, class: 'btn btn-danger submit_botton' %>
+      </div>
+    </div>
+</div>

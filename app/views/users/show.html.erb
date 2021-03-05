@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3 offset-md-1">
+      <%= attachment_image_tag(@user, :profile_image, fallback: "no_image.jpg", size:'150x150') %>
+    </div>
+    <div class="col-md-7">
+      <div class="row">
+        <%= @user.user_name %>
+      </div>
+      <div class="row mt-md-3">
+        <%= @user.introduction %>
+      </div>
+    </div>
+  </div>
+</div>
