@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="row">
+    <div class="col-auto mx-auto">
+      <h3>アカウント一覧画面</h3>
+    </div>
+  </div>
+  <div class="row mt-md-4">
+    <div class="col-md-10 offset-md-1">
+      <table class="table">
+        <thead class="thead-lignt">
+          <tr>
+            <th></th>
+            <th>ユーザーネーム</th>
+            <th>フォロー数</th>
+            <th>フォロワー数</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+            <tr>
+              <td>
+                <%= attachment_image_tag(user, :profile_image, fallback: "no_image.jpg", size:'50x50', class: "rounded-circle" ) %>
+              </td>
+              <td>
+                <%= link_to user_path(user.id) do %>
+                  <%= user.user_name %>
+                <% end %>
+              </td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

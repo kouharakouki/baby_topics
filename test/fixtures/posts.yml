@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  product_name: MyString
+  image_id: MyString
+  genre: 1
+  price: 1
+  reason_for_selection: MyText
+  good_point: MyText
+  bad_point: MyText
+  free_text: MyText
+  user_id: 1
+
+two:
+  product_name: MyString
+  image_id: MyString
+  genre: 1
+  price: 1
+  reason_for_selection: MyText
+  good_point: MyText
+  bad_point: MyText
+  free_text: MyText
+  user_id: 1

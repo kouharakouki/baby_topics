@@ -13,3 +13,19 @@
  *= require_tree .
  *= require_self
  */
+ @import "bootstrap";
+ @import 'font-awesome-sprockets';
+ @import 'font-awesome';
+
+ // .image {
+ //  width: 208px;
+ //  height: 208px;
+ //  object-fit: cover;
+ // }
+ .image {
+  object-fit: contain;
+ }
+
+ body {
+   background-image: image-url("aaa.jpg");
+ }

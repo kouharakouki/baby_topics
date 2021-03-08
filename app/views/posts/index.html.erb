@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-auto mx-auto mb-2">
+      <h3>投稿一覧画面</h3>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-auto mx-auto mb-4">
+      <h5>画像をクリックすると詳細画面に移動します</h5>
+    </div>
+  </div>
+  <div class="row">
+    <% @posts.each do |post| %>
+      <div class="col-md-3">
+        <div class="card-group">
+        <div class="card">
+          <%= link_to post_path(post.id) do %>
+            <%= attachment_image_tag post, :image, size:'255x255' %>
+          <% end %>
+          <div class="card-body">
+            <p class="card-text">
+              <%= link_to user_path(post.user_id) do %>
+                <%= post.user.user_name %><br />
+              <% end %>
+              〜<%= post.genre %>〜<br />
+              <%= post.product_name %><br />
+              コメント数：<%= post.post_comments.count %>件
+              ○いいね
+            </P>
+            <div class="card-footer">
+              <small class="text-muted">Last updated 3 mins ago</small>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
