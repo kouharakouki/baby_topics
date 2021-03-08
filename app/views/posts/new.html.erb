@@ -1,72 +1,78 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-auto mx-auto">
-      <h3>アカウント情報を変更する</h3>
+      <h3>新規投稿フォーム</h3>
     </div>
   </div>
-  <%= form_with model: @user, url: user_path, local:true do |f| %>
+  <%= form_with model: @post, local:true do |f| %>
+    <div class="row justify-content-center mt-md-4">
+      <div class="col-md-2">
+        商品ジャンルを選択してください
+      </div>
+      <div class="col-md-2">
+        <%= f.select :genre, Post.genres.keys, {},  {class: "form-control"} %>
+      </div>
+    </div>
+    <div class="row justify-content-center mt-md-3">
+      <div class="col-md-2">
+        商品名
+      </div>
+      <div class="col-md-2">
+        <%= f.text_field :product_name %>
+      </div>
+    </div>
+    <div class="row justify-content-center mt-md-3">
+      <div class="col-md-2">
+        商品画像
+      </div>
+      <div class="col-md-2">
+        <%= f.attachment_field :image %>
+      </div>
+    </div>
+    <div class="row justify-content-center mt-md-3">
+      <div class="col-md-2">
+        商品価格帯
+      </div>
+      <div class="col-md-2">
+        <%= f.select :price, Post.prices.keys, {},  {class: "form-control"} %>
+      </div>
+    </div>
+    <div class="row justify-content-center mt-md-3">
+      <div class="col-md-2">
+        この商品を選んだ理由・使っている理由
+      </div>
+      <div class="col-md-2">
+        <%= f.text_area :reason_for_selection %>
+      </div>
+    </div>
+    <div class="row justify-content-center mt-md-3">
+      <div class="col-md-2">
+        メリット
+      </div>
+      <div class="col-md-2">
+        <%= f.text_area :good_point %>
+      </div>
+    </div>
+    <div class="row justify-content-center mt-md-3">
+      <div class="col-md-2">
+        デメリット
+      </div>
+      <div class="col-md-2">
+        <%= f.text_area :bad_point %>
+      </div>
+    </div>
+    <div class="row justify-content-center mt-md-3">
+      <div class="col-md-2">
+        補足があればご記入ください
+      </div>
+      <div class="col-md-2">
+        <%= f.text_area :free_text %>
+      </div>
+    </div>
     <div class="row justify-content-center mt-md-4">
       <div class="col-auto mx-auto">
-        <%= attachment_image_tag(@user, :profile_image, fallback: "no_image.jpg", size:'100x100') %>
-      </div>
-    </div>
-    <div class="row justify-content-center mt-md-3">
-      <div class="col-md-2">
-        フルネーム
-      </div>
-      <div class="col-md-2">
-        <%= f.text_field :name %>
-      </div>
-    </div>
-    <div class="row justify-content-center mt-md-3">
-      <div class="col-md-2">
-        ユーザーネーム
-      </div>
-      <div class="col-md-2">
-        <%= f.text_field :user_name %>
-      </div>
-    </div>
-    <div class="row justify-content-center mt-md-3">
-      <div class="col-md-2">
-        アカウント画像
-      </div>
-      <div class="col-md-2">
-        <%= f.attachment_field :profile_image %>
-      </div>
-    </div>
-    <div class="row justify-content-center mt-md-3">
-      <div class="col-md-2">
-        自己紹介
-      </div>
-      <div class="col-md-2">
-        <%= f.text_area :introduction, rows:"8" %>
-      </div>
-    </div>
-    <div class="row justify-content-center mt-md-3">
-      <div class="col-md-2">
-        電話番号
-      </div>
-      <div class="col-md-2">
-        <%= f.text_field :phone_number %>
-      </div>
-    </div>
-    <div class="row justify-content-center mt-md-3">
-      <div class="col-md-2">
-        メールアドレス
-      </div>
-      <div class="col-md-2">
-        <%= f.text_field :email %>
-      </div>
-    </div>
-    <div class="row justify-content-center mt-md-4">
-      <div class="col-auto mx-auto">
-        <%= f.submit '変更内容を保存する', class: 'btn btn-success' %>
+        <%= f.submit '投稿する', class: 'btn btn-success' %>
       </div>
     </div>
   <% end %>
-  <div class="row justify-content-center mt-md-3">
-      <div class="col-auto mx-auto">
-        <%= link_to '退会する', users_unsubscribe_path, class: 'btn btn-danger' %>
-      </div>
-    </div>
 </div>
