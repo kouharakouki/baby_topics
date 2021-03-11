@@ -37,6 +37,9 @@
               </li>
             <% else %>
               <li class="nav-item">
+                <strong><%= link_to 'ゲストログイン', users_guest_sign_in_path, class: 'nav-link text-light', method: :post %></strong>
+              </li>
+              <li class="nav-item">
                 <strong><%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-light' %></strong>
               </li>
               <li class="nav-item">

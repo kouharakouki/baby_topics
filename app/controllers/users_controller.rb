@@ -1,4 +1,11 @@
 class UsersController < ApplicationController
+  before_action :check_guest, only: %i[update destroy]
+
+  def new_guest
+    user = User.guest
+    sign_in user
+    redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。'
+  end
 
   def index
     @users = User.all.order(id: "DESC")
@@ -51,4 +58,9 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :user_name, :phone_number, :email, :introduction, :profile_image)
   end
 
+  def check_guest
+    if current_user.email == 'guest@example.com'
+      redirect_to root_path, alert: 'ゲストユーザーの編集・削除できません。'
+    end
+  end
 end

@@ -12,6 +12,13 @@ class User < ApplicationRecord
   has_many :follower_users, through: :followings, source: :follower
   attachment :profile_image
 
+  def self.guest
+    find_or_create_by(email: 'guest@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.user_name = "ゲストユーザー"
+    end
+  end
+
   def follow(user_id)
     followers.create(followed_id: user_id)
   end
