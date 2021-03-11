@@ -1,0 +1,5 @@
+<% if post.favorited_by?(current_user) %>
+  <p><%= link_to post.favorites.count, post_favorites_path(post), method: :delete, class: "fas fa-heart heart_red", remote: true %>いいね</p>
+<% else %>
+  <p><%= link_to post.favorites.count, post_favorites_path(post), method: :post, class: "fas fa-heart heart_blue", remote: true %>いいね</p>
+<% end %>

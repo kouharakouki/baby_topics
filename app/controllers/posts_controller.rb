@@ -1,10 +1,11 @@
 class PostsController < ApplicationController
   def index
-    @posts = Post.all
+    @posts = Post.all.order(id: "DESC")
   end
 
   def show
     @post = Post.find(params[:id])
+    @post_comments = @post.post_comments.order(id: "DESC")
     @post_comment = PostComment.new
   end
 

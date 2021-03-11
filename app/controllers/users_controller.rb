@@ -1,11 +1,22 @@
 class UsersController < ApplicationController
 
   def index
-    @users = User.all
+    @users = User.all.order(id: "DESC")
   end
 
   def show
     @user = User.find(params[:id])
+    @posts = @user.posts.order(id: "DESC")
+  end
+
+  def followings
+    @user = User.find(params[:user_id])
+    @followings = @user.following_users
+  end
+
+  def followers
+    @user = User.find(params[:user_id])
+    @followers = @user.follower_users
   end
 
   def edit

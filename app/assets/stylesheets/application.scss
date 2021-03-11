@@ -18,14 +18,39 @@
  @import 'font-awesome';
 
  // .image {
- //  width: 208px;
- //  height: 208px;
- //  object-fit: cover;
+ //  object-fit: contain;
+ //  background-color: #FFFFEE;
  // }
- .image {
-  object-fit: contain;
+
+ header {
+  background-color: #FF9900;
+ }
+
+ footer {
+  background-color: #FF9900;
  }
 
  body {
-   background-image: image-url("aaa.jpg");
+  background-color: #FFFFEE;
  }
+ main {
+  // background-color: #FFFFEE;
+  padding-top: 30px;
+  padding-bottom: 30px;
+ }
+
+ .heart_red {
+  color: red;
+ }
+
+.heart_blue {
+  color: blue;
+ }
+
+.card-body {
+  padding-bottom: 0;
+  padding-top: 10px;
+}
+ // body {
+ //   background-image: image-url("aaa.jpg");
+ // }
