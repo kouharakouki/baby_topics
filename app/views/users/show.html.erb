@@ -29,6 +29,7 @@
         <div class="col-auto mx-auto">
           <% if @user == current_user %>
             <%= link_to "プロフィールを編集する", edit_user_path(@user), class: 'btn btn-success' %>
+            <%= link_to "ブックマーク一覧画面へ", users_bookmark_path, class: 'btn btn-success' %>
           <% end %>
           <% unless @user == current_user %>
             <% if current_user.following?(@user) %>
@@ -50,7 +51,7 @@
               <%= post.genre %>
             </div>
             <%= link_to post_path(post.id) do %>
-              <%= attachment_image_tag post, :image, size:'220x220' %>
+              <%= attachment_image_tag post, :image, class:"product_index_image" %>
             <% end %>
             <div class="card-body">
               <p class="card-text">

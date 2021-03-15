@@ -35,6 +35,16 @@
               <li class="nav-item">
                 <strong><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-light' %></strong>
               </li>
+              <li class="nav-item">
+                <%# if controller.controller_name == "posts" %>
+                  <%= search_form_for @q do |f| %>
+
+                    <%= f.search_field :product_name_eq, placeholder: "商品名で検索" %>
+
+                    <%= f.submit %>
+                  <% end %>
+                <%# end %>
+              </li>
             <% else %>
               <li class="nav-item">
                 <strong><%= link_to 'ゲストログイン', users_guest_sign_in_path, class: 'nav-link text-light', method: :post %></strong>
@@ -51,6 +61,19 @@
         </div>
       </nav>
     </header>
+
+      <% if flash[:notice] %>
+        <div class="alert alert-info mb-0">
+          <%= flash[:notice] %>
+        </div>
+      <% end %>
+
+      <% if flash[:alert] %>
+        <div class="alert alert-danger mb-0">
+          <%= flash[:alert] %>
+        </div>
+      <% end %>
+
     <main class="mb-auto">
       <%= yield %>
     </main>

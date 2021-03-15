@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!
   before_action :check_guest, only: %i[update destroy]
 
   def new_guest
@@ -7,8 +8,19 @@ class UsersController < ApplicationController
     redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。'
   end
 
+  def bookmark
+    bookmarks = Bookmark.where(user_id: current_user.id).order(created_at: "DESC").pluck(:post_id)
+    @posts = Post.find(bookmarks)
+    @user = User.find(params[:id])
+    if @user != current_user
+      redirect_to users_path(current_user.id)
+    end
+  end
+
   def index
-    @users = User.all.order(id: "DESC")
+    # @users = User.all.order(id: "DESC")
+    @qu = User.ransack(params[:q])
+    @users = @qu.result.page(params[:page]).reverse_order.per(2)
   end
 
   def show

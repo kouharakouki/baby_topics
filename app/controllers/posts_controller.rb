@@ -1,6 +1,9 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
-    @posts = Post.all.order(id: "DESC")
+    @q = Post.ransack(params[:q])
+    @posts = @q.result.page(params[:page]).reverse_order.per(12)
   end
 
   def show

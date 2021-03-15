@@ -1,48 +1,23 @@
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-auto mx-auto mb-2">
-      <h3>投稿一覧画面</h3>
-    </div>
-  </div>
-  <div class="row justify-content-center">
-    <div class="col-auto mx-auto mb-4">
-      <h5>画像をクリックすると詳細画面に移動します</h5>
-    </div>
-  </div>
-  <div class="row">
-    <div class="card-deck">
-      <% @posts.each do |post| %>
-        <div class="col-md-3 mt-4">
-          <div class="card border-light bg-light text-center">
-            <div class="card-header text-muted">
-              <%= post.genre %>
-            </div>
-            <%= link_to post_path(post.id) do %>
-              <%= attachment_image_tag post, :image, size:'220x220' %>
-            <% end %>
-            <div class="card-body">
-              <div class="card-title">
-                 <small>
-                  <%= link_to user_path(post.user_id) do %>
-                    <%= attachment_image_tag post.user, :profile_image, class:"profile_image", fallback: "no_image.jpg", size:'25x25', class: "rounded-circle"  %>
-                    <%= post.user.user_name %>
-                  <% end %>
-                </small>
-              </div>
-              <p class="card-text">
-                <strong><%= post.product_name %></strong>
-              </p>
-              <div class="d-flex justify-content-around">
-                <small class="favorite-btn_<%= post.id %>"><%= render "favorites/favorite-btn", post: post %></small>
-                <small><%= post.post_comments.count %>コメント</small>
-              </div>
-            </div>
-            <div class="card-footer">
-              <small class="text-muted"><%= post.created_at.strftime('%Y/%m/%d') %></small>
-            </div>
-          </div>
+<div class="container-fluid">
+  <div class="tab-content">
+    <div class="tab-pane fade show active" id="item1" role="tabpanel" aria-labelledby="item1-tab">
+      <div class="row">
+        <div class="col-auto mx-auto">
+          <h4>投稿一覧画面</h4>
         </div>
+      </div>
+
+      <%= search_form_for @q do |f| %>
+        <%= f.label :genre, "ジャンル検索" %>
+        <%= f.select :genre_eq, Post.genres, { include_blank: '選択してください'}, { class: 'form-control' , required: true } %>
+        <%= f.submit %>
       <% end %>
+
+      <% if @posts.count == 0 %>
+        <th>投稿がありません</th>
+      <% else %>
+        <%= render "posts/form_index", posts: @posts %>
+      <% end %>
+      <%= paginate @posts %>
     </div>
-  </div>
 </div>

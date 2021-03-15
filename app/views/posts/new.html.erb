@@ -4,69 +4,58 @@
       <h3>新規投稿フォーム</h3>
     </div>
   </div>
+  <div class="row justify-content-center">
+    <div class="col-auto mx-auto">
+      <p class="alert-text">※部分は入力必須です</p>
+    </div>
+  </div>
   <%= form_with model: @post, local:true do |f| %>
-    <div class="row justify-content-center mt-md-4">
-      <div class="col-md-2">
-        商品ジャンルを選択してください
-      </div>
-      <div class="col-md-2">
+    <div class="row justify-content-center">
+      <div class="col-md-5">
+        <%= f.label :genre, "※商品ジャンルを選択してください" %>
         <%= f.select :genre, Post.genres.keys, {},  {class: "form-control"} %>
       </div>
     </div>
-    <div class="row justify-content-center mt-md-3">
-      <div class="col-md-2">
-        商品名
-      </div>
-      <div class="col-md-2">
-        <%= f.text_field :product_name %>
+    <div class="row justify-content-center mt-md-2">
+      <div class="col-md-5">
+        <%= f.label :product_name, "※商品名" %><br />
+        <%= f.text_field :product_name ,class: "col-md-12" %>
       </div>
     </div>
-    <div class="row justify-content-center mt-md-3">
-      <div class="col-md-2">
-        商品画像
-      </div>
-      <div class="col-md-2">
+    <div class="row justify-content-center mt-md-2">
+      <div class="col-md-5">
+        <%= f.label :image, "※商品画像" %><br />
         <%= f.attachment_field :image %>
       </div>
     </div>
-    <div class="row justify-content-center mt-md-3">
-      <div class="col-md-2">
-        商品価格帯
-      </div>
-      <div class="col-md-2">
+    <div class="row justify-content-center mt-md-2">
+      <div class="col-md-5">
+        <%= f.label :price, "※商品の価格帯を選択して下さい" %>
         <%= f.select :price, Post.prices.keys, {},  {class: "form-control"} %>
       </div>
     </div>
-    <div class="row justify-content-center mt-md-3">
-      <div class="col-md-2">
-        この商品を選んだ理由・使っている理由
-      </div>
-      <div class="col-md-2">
-        <%= f.text_area :reason_for_selection %>
+    <div class="row justify-content-center mt-md-2">
+      <div class="col-md-5">
+        <%= f.label :reason_for_selection, "※商品を選んだ理由・使っている理由" %>
+        <%= f.text_area :reason_for_selection, rows: 5 ,class: "col-md-12" %>
       </div>
     </div>
-    <div class="row justify-content-center mt-md-3">
-      <div class="col-md-2">
-        メリット
-      </div>
-      <div class="col-md-2">
-        <%= f.text_area :good_point %>
+    <div class="row justify-content-center mt-md-2">
+      <div class="col-md-5">
+        <%= f.label :good_point, "※商品のメリット" %>
+        <%= f.text_area :good_point, rows: 5 ,class: "col-md-12" %>
       </div>
     </div>
-    <div class="row justify-content-center mt-md-3">
-      <div class="col-md-2">
-        デメリット
-      </div>
-      <div class="col-md-2">
-        <%= f.text_area :bad_point %>
+    <div class="row justify-content-center mt-md-2">
+      <div class="col-md-5">
+        <%= f.label :bad_point, "※商品のデメリット（なければ「なし」とご記入ください）" %>
+        <%= f.text_area :bad_point, rows: 5 ,class: "col-md-12" %>
       </div>
     </div>
-    <div class="row justify-content-center mt-md-3">
-      <div class="col-md-2">
-        補足があればご記入ください
-      </div>
-      <div class="col-md-2">
-        <%= f.text_area :free_text %>
+    <div class="row justify-content-center mt-md-2">
+      <div class="col-md-5">
+        <%= f.label :free_text, "補足があればご記入ください" %>
+        <%= f.text_area :free_text, rows: 5 ,class: "col-md-12" %>
       </div>
     </div>
     <div class="row justify-content-center mt-md-4">

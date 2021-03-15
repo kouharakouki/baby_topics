@@ -4,6 +4,12 @@
       <h3>アカウント一覧画面</h3>
     </div>
   </div>
+  <%= search_form_for @qu do |f| %>
+
+  <%= f.search_field :user_name_eq, placeholder: "アカウント名で検索" %>
+
+  <%= f.submit %>
+  <% end %>
   <div class="row mt-md-4">
     <div class="col-md-10 offset-md-1">
       <table class="table">
@@ -54,6 +60,7 @@
           <% end %>
         </tbody>
       </table>
+      <%= paginate @users %>
     </div>
   </div>
 </div>
