@@ -1,3 +1,4 @@
 $('#comments_area').html("<%= j(render partial: 'post_comments/index', locals: {post: @post.post_comments.order(id: "DESC")}) %>")
 $('.comment_count').html("コメント数：<%= @post.post_comments.count %>件")
 $('textarea').val("")
+$('#error_message').html("<%= j(render partial: 'post_comments/error', locals: {post: @post, post_comment: @post_comment}) %>")

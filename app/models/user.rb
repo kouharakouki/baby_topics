@@ -2,7 +2,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable, :trackable, :confirmable
   has_many :posts, dependent: :destroy
   has_many :post_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
@@ -12,6 +12,10 @@ class User < ApplicationRecord
   has_many :following_users, through: :followers, source: :followed
   has_many :follower_users, through: :followings, source: :follower
   attachment :profile_image
+
+  validates :name, presence: true
+  validates :user_name, uniqueness: { message: 'は既に使用されており、登録できません' } , presence: true
+  validates :phone_number, length: { minimum: 10 }
 
   def self.guest
     find_or_create_by(email: 'guest@example.com') do |user|

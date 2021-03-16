@@ -6,7 +6,7 @@
   </div>
   <%= search_form_for @qu do |f| %>
 
-  <%= f.search_field :user_name_eq, placeholder: "アカウント名で検索" %>
+  <%= f.search_field :user_name_start, placeholder: "アカウント名で検索" %>
 
   <%= f.submit %>
   <% end %>

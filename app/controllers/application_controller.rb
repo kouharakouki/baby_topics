@@ -1,9 +1,14 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_search_params
+  before_action :set_host
 
   def after_sign_in_path_for(resource)
     posts_path
+  end
+
+  def set_host
+    Rails.application.routes.default_url_options[:host] = request.host_with_port
   end
 
   protected

@@ -7,7 +7,7 @@
 <% posts.each do |post| %>
       <div class="card-deck col-2.5 mx-1">
         <div class="d-flex flex-wrap">
-          <div class="card border-light bg-light text-center mt-3" style="width: 12rem;">
+          <div class="card border-light bg-light text-center mt-3" style="width: 16rem;">
             <div class="card-header">
               <%= post.genre %>
             </div>
@@ -39,3 +39,8 @@
       </div>
     <% end %>
     </div>
+    <div class="row mt-5">
+    <div class="col-auto mx-auto">
+      <%= paginate posts %>
+    </div>
+  </div>

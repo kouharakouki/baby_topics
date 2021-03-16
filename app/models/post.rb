@@ -5,6 +5,14 @@ class Post < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
 
+  validates :product_name, presence: true
+  validates :genre, presence: true
+  validates :price, presence: true
+  validates :image, presence: true
+  validates :reason_for_selection, presence: true
+  validates :good_point, presence: true
+  validates :bad_point, presence: true
+
   def favorited_by?(user)
     favorites.where(user_id: user.id).exists?
   end

@@ -36,7 +36,7 @@
 
  main {
   padding-top: 30px;
-  padding-bottom: 30px;
+  padding-bottom: 10px;
  }
 
  .heart_red {
@@ -77,14 +77,9 @@
 }
 
 .product_index_image {
- max-width: 190px;
- height: 253px;
+ max-width: 250px;
+ height: 333px;
  object-fit: cover;
-}
-
-.product_edit_image {
- max-height: 460px;
- max-width: 340px;
 }
 
 .alert-text {
@@ -93,4 +88,8 @@
 
 p {
  margin-bottom: 5px;
+}
+
+.btn-orange{
+ background-color: #FFEBCD;
 }

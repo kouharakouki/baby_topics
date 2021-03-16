@@ -19,27 +19,33 @@ class PostsController < ApplicationController
   def edit
     @post = Post.find(params[:id])
     if @post.user != current_user
-      redirect_to posts_path
+      redirect_to posts_path, alert: '不正なアクセスです'
     end
   end
 
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    @post.save
-    redirect_to post_path(@post)
+    if@post.save
+      redirect_to post_path(@post), notice: '投稿が完了しました'
+    else
+      render :new
+    end
   end
 
   def update
     @post = Post.find(params[:id])
-    @post.update(post_params)
-    redirect_to post_path
+    if @post.update(post_params)
+      redirect_to post_path, notice: '投稿内容の編集が完了しました'
+    else
+      render :edit
+    end
   end
 
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    redirect_to posts_path
+    redirect_to posts_path, notice: '投稿内容を削除しました'
   end
 
   private

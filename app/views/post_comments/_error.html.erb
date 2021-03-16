@@ -1,0 +1,9 @@
+<div class="alert-text">
+<% if post_comment.errors.any? %>
+    <% post_comment.errors.full_messages.each do |message| %>
+      <ul>
+        <li><%= message %></li>
+      </ul>
+    <% end %>
+<% end %>
+</div>

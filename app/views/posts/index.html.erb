@@ -1,6 +1,6 @@
 <div class="container-fluid">
-  <div class="tab-content">
-    <div class="tab-pane fade show active" id="item1" role="tabpanel" aria-labelledby="item1-tab">
+
+
       <div class="row">
         <div class="col-auto mx-auto">
           <h4>投稿一覧画面</h4>
@@ -13,11 +13,7 @@
         <%= f.submit %>
       <% end %>
 
-      <% if @posts.count == 0 %>
-        <th>投稿がありません</th>
-      <% else %>
-        <%= render "posts/form_index", posts: @posts %>
-      <% end %>
-      <%= paginate @posts %>
-    </div>
+      <%= render "posts/form_index", posts: @posts %>
+
+
 </div>
