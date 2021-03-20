@@ -1,3 +1,4 @@
+<!--いいねの登録と解除を非同期で行うボタン-->
 <% if post.favorited_by?(current_user) %>
   <p><%= link_to post.favorites.count, post_favorites_path(post), method: :delete, class: "fas fa-heart heart_red", remote: true %>いいね</p>
 <% else %>

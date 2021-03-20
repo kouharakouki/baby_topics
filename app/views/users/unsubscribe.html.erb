@@ -1,22 +1,23 @@
 <div class="container">
-  <div class="row justify-content-center mt-md-5">
+  <div class="row justify-content-center mt-5">
     <div class="col-auto mx-auto mt-md-5">
       <h3>本当に退会しますか？</h3>
     </div>
   </div>
-  <div class="row justify-content-center mt-md-5">
+  <div class="row justify-content-center mt-5">
     <div class="col-auto mx-auto">
       退会すると、アカウント登録情報や<br />
       これまでの投稿、コメントが閲覧できなくなります。<br />
       退会する場合は、「退会する」をクリックしてください。
     </div>
   </div>
-  <div class="row justify-content-center mt-md-5">
+  <div class="row justify-content-center mt-5">
     <div class="col-auto">
-      <%= link_to '退会しない', user_path(current_user.id), class: 'btn btn-primary' %>
+      <%= link_to '退会しない', user_path(current_user.id), class: 'btn btn-blue' %>
     </div>
     <div class="col-auto">
-      <%= link_to '退会する', user_path, method: :delete, class: 'btn btn-danger' %>
+      <!--物理的にアカウント情報を削除-->
+      <%= link_to '退会する', user_path, method: :delete, class: 'btn btn-pink' %>
     </div>
   </div>
 </div>

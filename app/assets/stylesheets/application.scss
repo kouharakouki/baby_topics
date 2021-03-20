@@ -35,8 +35,13 @@
  }
 
  main {
-  padding-top: 30px;
   padding-bottom: 10px;
+  .container {
+   padding-top: 30px;
+  }
+  .container-fluid {
+   padding-top: 30px;
+  }
  }
 
  .heart_red {
@@ -77,9 +82,12 @@
 }
 
 .product_index_image {
- max-width: 250px;
- height: 333px;
+ // max-width: 250px;
+ // height: 333px;
+ width: 206px;
+ height: 206px;
  object-fit: cover;
+ // object-position: center center;
 }
 
 .alert-text {
@@ -90,6 +98,158 @@ p {
  margin-bottom: 5px;
 }
 
-.btn-orange{
+.btn-skin{
  background-color: #FFEBCD;
 }
+
+.btn-orange{
+ background-color: #FF9900;
+ color: #FFFFEE;
+}
+
+.btn-orange:hover{
+ background-color: #FF9900;
+ color: #FFFFEE;
+}
+
+.btn-pink{
+ background-color: #de6770;
+ color: #FFFFEE;
+}
+
+.btn-blue {
+ background-color: #187fc4;
+ color: #FFFFEE;
+}
+
+.main-visual {
+  width: 100%;
+  height: 400px;
+  background-image: url("main.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.bg-mask {
+ height: 100%;
+ background-color: rgba(255, 255, 255, 0.3);
+}
+
+.main-visual-content {
+  width: 40%;
+  height: 200px;
+  text-align: center;
+  padding-top: 30px;
+}
+
+.main-visual-name {
+ font-size: 40px;
+}
+
+.main-visual-text {
+ font-size: 20px;
+ color: white;
+ margin-bottom: 30px;
+}
+
+.top-btn {
+ width: 200px;
+ margin-top: 15px;
+ border-radius: 10px;
+}
+
+.main-text-title {
+ width: 100%;
+ height: 200px;
+ background-color: white;
+ border-bottom: 8px solid #f7f7f7;
+}
+
+.main-text-body {
+ width: 100%;
+ height: 300px;
+}
+
+.text-title {
+ text-align: center;
+ font-size: 50px;
+ padding-top: 60px;
+ color: #FF9900;
+}
+
+.text-body {
+ text-align: center;
+ margin-top: 30px;
+ font-size: 30px;
+}
+
+.text-body-small {
+ text-align: center;
+ margin-top: 30px;
+ font-size: 20px;
+}
+
+.text-orange {
+ color: #FF9900;
+ font-size: 20px;
+}
+
+.about-visual {
+  width: 100%;
+  height: 400px;
+  background-image: url("about.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.about-bg-mask {
+ height: 100%;
+ background-color: rgba(255, 255, 255, 0.5);
+}
+
+.about-visual-content {
+  width: 100%;
+  height: 200px;
+  text-align: center;
+  padding-top: 250px;
+}
+
+.about-visual-text {
+ font-size: 40px;
+ color: white;
+}
+
+.about-text-body {
+ width: 100%;
+ height: 400px;
+}
+
+.about-image1 {
+ width: 100%;
+ height: 300px;
+ background-image: url("about1.png");
+ background-size: 100% 100%;
+}
+
+.about-image2 {
+ width: 100%;
+ height: 300px;
+ background-image: url("about2.png");
+ background-size: 100% 100%;
+}
+
+.about-image3 {
+ width: 100%;
+ height: 300px;
+ background-image: url("about3.png");
+ background-size: 100% 100%;
+}
+
+.card-header-about {
+ font-size: 20px;
+ background-color: #FF9900;
+ color: white;
+ height: 50px;
+ padding-top: 10px;
+}
+

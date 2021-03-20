@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-auto mx-auto">
+      <h3>お問い合わせ確認画面</h3>
+    </div>
+  </div>
+  <div class="row justify-content-center mt-3">
+    <div class="col-md-8">
+      <table class="table">
+        <tr>
+          <td>＜お名前＞<br />
+          <%= @contact.name %></td>
+        </tr>
+        <tr>
+          <td>＜返信先Eメールアドレス＞<br />
+          <%= @contact.email %></td>
+        </tr>
+        <tr>
+          <td>＜電話番号＞<br />
+          <%= @contact.phone_number %></td>
+        </tr>
+        <tr>
+          <td>＜メッセージ＞<br />
+          <%= @contact.message %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="form-group">
+    <!--入力画面で入力された情報をhidden_fieldで持ってきて、送信ボタンで保存処理-->
+    <%= form_for(@contact) do |f| %>
+      <%= f.hidden_field :name %>
+      <%= f.hidden_field :email %>
+      <%= f.hidden_field :phone_number %>
+      <%= f.hidden_field :message %>
+      <div class="row justify-content-center mt-3">
+        <div class="col-md-4">
+          <%= f.submit '送信', class: "form-control btn btn-orange" %>
+        </div>
+      </div>
+    <% end %>
+    <div class="row justify-content-center mt-3">
+      <div class="col-md-4">
+        <!--ブラウザの戻るボタンが押された時と同じ動きをするように入力された情報をnew画面に返す-->
+        <%= link_to "入力画面に戻る", 'javascript:history.back()', class: "form-control btn btn-pink" %>
+      </div>
+    </div>
+  </div>
+</div>

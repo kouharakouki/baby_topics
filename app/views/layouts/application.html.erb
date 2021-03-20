@@ -10,74 +10,88 @@
   </head>
 
   <body class="d-flex flex-column vh-100">
+    <!--レスポンシブ対応でハンバーガーメニューに変更-->
     <header>
       <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="container">
+        <div class="container-fluid">
           <a class="navbar-brand p-3" href="/"><%= image_tag 'logo.jpg' %></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
-            <% if user_signed_in? %>
-              <li class="nav-item">
-                <strong><%= link_to "マイページ", user_path(current_user.id), class: 'nav-link text-light' %></strong>
-              </li>
-              <li class="nav-item">
-                <strong><%= link_to "アカウント一覧", users_path, class: 'nav-link text-light' %></strong>
-              </li>
-              <li class="nav-item">
-                <strong><%= link_to "投稿一覧", posts_path, class: 'nav-link text-light' %></strong>
-              </li>
-              <li class="nav-item">
-                <strong><%= link_to "新規投稿", new_post_path, class: 'nav-link text-light' %></strong>
-              </li>
-              <li class="nav-item">
-                <strong><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-light' %></strong>
-              </li>
-              <li class="nav-item">
-
+              <% if user_signed_in? %>
+                <li class="nav-item">
+                  <strong><%= link_to "ベビトピについてと便利な使い方", about_path, class: 'nav-link text-light' %></strong>
+                </li>
+                <li class="nav-item">
+                  <strong><%= link_to "マイページ", user_path(current_user.id), class: 'nav-link text-light' %></strong>
+                </li>
+                <li class="nav-item">
+                  <strong><%= link_to "アカウント一覧", users_path, class: 'nav-link text-light' %></strong>
+                </li>
+                <li class="nav-item">
+                  <strong><%= link_to "投稿一覧", posts_path, class: 'nav-link text-light' %></strong>
+                </li>
+                <li class="nav-item">
+                  <strong><%= link_to "新規投稿", new_post_path, class: 'nav-link text-light' %></strong>
+                </li>
+                <li class="nav-item">
+                  <strong><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-light' %></strong>
+                </li>
+                <li class="nav-item mr-3">
+                  <strong><%= link_to "お問い合わせ", new_contact_path, class: 'nav-link text-light' %></strong>
+                </li>
+                <li class="nav-item">
+                  <!--ransackを用いた検索窓を表示。商品名のみ検索可能-->
                   <%= search_form_for @q do |f| %>
-                  <div class="input-group">
-                    <%= f.search_field :product_name_start, placeholder: "商品名で検索", class: "form-control" %>
-                  <span class="input-group-btn">
-                    <%= button_tag "検索", :name => nil, class: "btn btn-orange" %>
-                  </span>
+                    <div class="input-group">
+                      <%= f.search_field :product_name_start, placeholder: "商品名で検索", class: "form-control" %>
+                      <span class="input-group-btn">
+                        <%= button_tag "検索", :name => nil, class: "btn btn-skin" %>
+                      </span>
+                    </div>
                   <% end %>
-
-              </li>
-            <% else %>
-              <li class="nav-item">
-                <strong><%= link_to 'ゲストログイン', users_guest_sign_in_path, class: 'nav-link text-light', method: :post %></strong>
-              </li>
-              <li class="nav-item">
-                <strong><%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-light' %></strong>
-              </li>
-              <li class="nav-item">
-                <strong><%= link_to "ログイン", new_user_session_path, class: 'nav-link text-light' %></strong>
-              </li>
-            <% end %>
+                </li>
+              <% else %>
+                <li class="nav-item">
+                  <strong><%= link_to "ベビトピについてと便利な使い方", about_path, class: 'nav-link text-light' %></strong>
+                </li>
+                <li class="nav-item">
+                  <strong><%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-light' %></strong>
+                </li>
+                <li class="nav-item">
+                  <strong><%= link_to "ログイン", new_user_session_path, class: 'nav-link text-light' %></strong>
+                </li>
+                <li class="nav-item">
+                  <strong><%= link_to "お問い合わせ", new_contact_path, class: 'nav-link text-light' %></strong>
+                </li>
+                <li class="nav-item">
+                  <strong><%= link_to 'ゲストログイン(PF閲覧用)', users_guest_sign_in_path, class: 'nav-link text-light', method: :post %></strong>
+                </li>
+              <% end %>
             </ul>
           </div>
         </div>
       </nav>
     </header>
 
-      <% if flash[:notice] %>
-        <div class="alert alert-info mb-0">
-          <%= flash[:notice] %><button type="button" class="close" data-dismiss="alert">&times;</button>
-        </div>
-      <% end %>
-
-      <% if flash[:alert] %>
-        <div class="alert alert-danger mb-0">
-          <%= flash[:alert] %><button type="button" class="close" data-dismiss="alert">&times;</button>
-        </div>
-      <% end %>
+    <!--ヘッダー下にフラッシュメッセージを表示し、&times;でバツボタンもあり-->
+    <% if flash[:notice] %>
+      <div class="alert alert-info mb-0">
+        <%= flash[:notice] %><button type="button" class="close" data-dismiss="alert">&times;</button>
+      </div>
+    <% end %>
+    <% if flash[:alert] %>
+      <div class="alert alert-danger mb-0">
+        <%= flash[:alert] %><button type="button" class="close" data-dismiss="alert">&times;</button>
+      </div>
+    <% end %>
 
     <main class="mb-auto">
       <%= yield %>
     </main>
+
     <footer class="text-white pt-3 pb-1">
       <div class="container">
         <div class="row justify-content-center">

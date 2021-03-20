@@ -16,24 +16,39 @@
           <%= f.password_field :password, autocomplete: "current-password", placeholder: "パスワード", class: "form-control" %>
         </div>
       </div>
-      <div class="row justify-content-center mt-md-4">
+      <div class="row justify-content-center mt-4">
         <div class="col-auto mx-auto">
           <% if devise_mapping.rememberable? %>
             <div class="field">
               <%= f.check_box :remember_me %>
-              <%= f.label :次回からログインをスキップする場合はチェックを入れてください %>
+              <%= f.label :次回から自動的にログインする %>
             </div>
           <% end %>
         </div>
       </div>
       <div class="row justify-content-center">
         <div class="col-md-4">
-          <%= f.submit 'ログイン', class: "form-control btn btn-success" %>
+          <%= f.submit 'ログイン', class: "form-control btn btn-orange" %>
         </div>
       </div>
     </div>
   <% end %>
+  <div class="row justify-content-center mt-1">
+    <div class="col-auto mx-auto">
+      <%= link_to "パスワードを忘れた場合", new_user_password_path %>
+    </div>
+  </div>
+  <div class="row justify-content-center mt-1">
+    <div class="col-auto mx-auto">
+      <%= link_to "確認メールが届かない場合", new_user_confirmation_path %>
+    </div>
+  </div>
+  <hr>
 
-  <%= render "devise/shared/links" %>
+  <div class="row justify-content-center mt-4">
+    <div class="col-md-4">
+      <%= link_to "新しいアカウントを作成", new_user_registration_path, class: "form-control btn btn-blue" %>
+    </div>
+  </div>
 
 </div>

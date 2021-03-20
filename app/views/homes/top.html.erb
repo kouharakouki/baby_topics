@@ -1,1 +1,155 @@
-<h1>ベビトピへようこそ！</h1>
+<div class="main-visual">
+  <div class="bg-mask">
+    <div class="main-visual-content">
+      <p class="main-visual-text">
+        <span class="main-visual-name"><strong>君が喜ぶものを選びたい</span></br>
+        ベビトピはベビー用品の口コミ投稿に</br>
+        特化したSNSサイトです。</strong>
+      </p>
+      <div>
+        <%= link_to "ログイン", new_user_session_path, class: "btn btn-orange top-btn" %>
+      </div>
+      <div>
+        <%= link_to "新規アカウント作成", new_user_registration_path, class: "btn btn-blue top-btn" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="main-text-title">
+  <P class="text-title">
+    <strong>ベビトピの特徴</strong>
+  </P>
+</div>
+
+<div class="main-text-body">
+  <P class="text-body">商品の特徴を捉えた投稿記事</P>
+  <div class="text-body-small">
+    ベビー用品を検索する際に、参考になる口コミ情報が多いサイトです！</br>
+    それは投稿フォームに以下の内容を設けることで投稿する人が情報を整理しやすい内容になっているからです。</br>
+    <span class="text-orange"><strong>
+      ・この商品を選んだ理由</br>
+      ・商品のメリット</br>
+      ・商品のデメリット</br>
+    </strong></span>
+    このように商品の特徴を捉えた情報がすぐにわかることがベビトピの特徴です！
+  </div>
+</div>
+
+<div class="main-text-title">
+  <P class="text-title">
+    <strong>人気投稿記事見本</strong>
+  </P>
+</div>
+
+<div class="container-fluid">
+  <div class="row mt-4">
+    <!--いいねが一番多い記事の詳細画面を１件のみ表示-->
+    <% @post.each do |post| %>
+      <div class="col-md-4">
+        <div class="col-auto">
+          <div class="mb-3">
+            <%= attachment_image_tag post.user, :profile_image, class:"profile_image", fallback: "no_image.jpg", size:'50x50', class: "rounded-circle" %>
+            <%= post.user.user_name %>
+          </div>
+          <div class="mb-3"><%= attachment_image_tag post, :image, class:"product_show_image" %></div>
+        </div>
+      </div>
+
+      <div class="col-md-8">
+        <table class="table">
+          <tr>
+            <td>＜商品ジャンル＞<br />
+            <%= post.genre %></td>
+          </tr>
+          <tr>
+            <td>＜商品名＞<br />
+            <%= post.product_name %></td>
+          </tr>
+          <tr>
+            <td>＜価格帯＞<br />
+            <%= post.price %></td>
+          </tr>
+          <tr>
+            <td>＜選んだ理由＞<br />
+            <%= post.reason_for_selection %></td>
+          </tr>
+          <tr>
+            <td>＜メリット＞<br />
+            <%= post.good_point %></td>
+          </tr>
+          <tr>
+            <td>＜メリット＞<br />
+            <%= post.bad_point %></td>
+          </tr>
+          <tr>
+            <td>＜補足情報＞<br />
+            <%= post.free_text %></td>
+          </tr>
+        </table>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="main-text-title">
+  <P class="text-title">
+    <strong>人気投稿記事一覧</strong>
+  </P>
+</div>
+<div class="text-body-small">
+  <P>※詳細画面閲覧にはログインが必要です</P>
+</div>
+
+<div class="container-fluid">
+  <div class="row justify-content-center mb-3">
+    <!--いいねの多い順番に５件のレコードを@postsに代入し表示-->
+    <% @posts.each do |post| %>
+      <div class="card-deck col-2.5 mx-1">
+        <div class="d-flex flex-wrap">
+          <div class="card border-light bg-light text-center mt-3" style="width: 13rem;">
+            <div class="card-header">
+              <%= post.genre %>
+            </div>
+            <%= link_to post_path(post.id) do %>
+              <%= attachment_image_tag post, :image, :fill, 200, 200, class:"product_index_image" %>
+            <% end %>
+            <div class="card-body">
+              <div class="card-title">
+                <small>
+                  <%= link_to user_path(post.user_id) do %>
+                    <%= attachment_image_tag post.user, :profile_image, class:"profile_image", fallback: "no_image.jpg", size:'25x25', class: "rounded-circle"  %>
+                    <%= post.user.user_name %>
+                  <% end %>
+                </small>
+              </div>
+              <p class="card-text">
+                <strong><%= truncate(post.product_name, length:9) %></strong>
+              </p>
+              <div class="d-flex justify-content-around">
+                <small><%= post.favorites.count %>いいね</small>
+                <small><%= post.post_comments.count %>コメント</small>
+              </div>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted"><%= post.created_at.strftime('%Y/%m/%d') %></small>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <!--ログインしていなければログイン・新規アカウント作成ボタンを表示-->
+  <% if user_signed_in? %>
+  <%else %>
+    <div class="row justify-content-center mb-3">
+      <div class="col-auto">
+        <%= link_to "ログイン", new_user_session_path, class: "btn btn-orange top-btn" %>
+      </div>
+      <div class="col-auto">
+        <%= link_to "新規アカウント作成", new_user_registration_path, class: "btn btn-blue top-btn" %>
+      </div>
+    </div>
+  <% end %>
+</div>

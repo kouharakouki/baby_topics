@@ -4,7 +4,8 @@
       <h3>投稿詳細画面</h3>
     </div>
   </div>
-  <div class="row mt-md-4">
+
+  <div class="row mt-4">
     <div class="col-md-4">
       <div class="mb-3">
         <%= link_to user_path(@post.user_id) do %>
@@ -19,8 +20,14 @@
       </div>
       <% if @post.user != current_user %>
         <div class="row justify-content-center mt-3">
-          <div class="col-auto mx-auto">
+          <div class="col-md-6">
             <div class="bookmark-btn_<%= @post.id %>"><%= render "bookmarks/bookmark-btn", post: @post %></div>
+          </div>
+        </div>
+      <% else %>
+        <div class="row justify-content-center mt-3">
+          <div class="col-md-6">
+            <%= link_to "編集する", edit_post_path(@post), class: 'form-control btn btn-orange' %>
           </div>
         </div>
       <% end %>
@@ -56,33 +63,27 @@
           <%= @post.free_text %></td>
         </tr>
       </table>
-      <div class="row">
-        <div class="col-auto">
-          <% if @post.user == current_user %>
-            <%= link_to "編集する", edit_post_path(@post), class: 'btn btn-success' %>
-          <% end %>
-        </div>
-        <div class="col-auto">
-          <% if @post.user == current_user %>
-            <%= link_to "削除する", post_path(@post), method: :delete, class: 'btn btn-danger'  %>
-          <% end %>
-        </div>
-      </div>
-      <div class="row mt-2 mb-5">
+      <div class="row mt-2">
         <div id="error_message">
           <%= render 'post_comments/error', post_comment: @post_comment %>
         </div>
         <div class="new-comment">
           <%= form_with(model:[@post, @post_comment], remote: true) do |f| %>
             <%= f.text_area :comment, rows:'5',placeholder: "コメントはこちら", size: "90x3", class: "form-control" %>
-            <%= f.submit "コメントを投稿する", class: "btn btn-primary" %>
+            <div class="row justify-content-center mt-3">
+              <%= f.submit "コメントを投稿する", class: "btn btn-blue" %>
+            </div>
           <% end %>
         </div>
       </div>
     </div>
   </div>
 
+  <!--区切り線を表示-->
+  <hr>
+
   <div id="comments_area">
+    <!--コメント一覧の部分テンプレートを表示-->
     <%= render 'post_comments/index', post: @post_comments %>
   </div>
 </div>

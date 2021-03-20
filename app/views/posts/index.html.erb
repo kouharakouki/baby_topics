@@ -1,19 +1,25 @@
 <div class="container-fluid">
+  <div class="row">
+    <div class="col-auto mx-auto">
+      <h4>投稿一覧画面</h4>
+    </div>
+  </div>
 
-
-      <div class="row">
-        <div class="col-auto mx-auto">
-          <h4>投稿一覧画面</h4>
-        </div>
-      </div>
-
+  <!--ransackを用いたジャンル検索をビュー画面に表示-->
+  <div class="row justify-content-center my-3">
+    <div class="col-md-3">
       <%= search_form_for @q do |f| %>
-        <%= f.label :genre, "ジャンル検索" %>
-        <%= f.select :genre_eq, Post.genres, { include_blank: '選択してください'}, { class: 'form-control' , required: true } %>
-        <%= f.submit %>
+        <div class="input-group">
+          <!--genresにpost.rbで定義したenum genreの中身が入っていてそれをプルタブで選択し検索できるように-->
+          <%= f.select :genre_eq, Post.genres, { include_blank: 'ジャンル別で検索できます'}, { class: 'form-control' , required: true } %>
+          <span class="input-group-btn">
+          <%= button_tag "検索", :name => nil, class: "btn btn-orange" %>
+          </span>
+        </div>
       <% end %>
+    </div>
+  </div>
 
-      <%= render "posts/form_index", posts: @posts %>
-
-
+  <!--一覧表示の部分テンプレートを表示-->
+  <%= render "posts/form_index", posts: @posts %>
 </div>

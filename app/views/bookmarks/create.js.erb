@@ -1,1 +1,2 @@
+<!--ブックマークボタンが押された時に、ブックマークボタンの表示を変えてビューに返す-->
 $('.bookmark-btn_<%= @post.id %>').html("<%= j(render partial: 'bookmarks/bookmark-btn', locals: {post: @post}) %>");

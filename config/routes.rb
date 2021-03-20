@@ -16,4 +16,7 @@ Rails.application.routes.draw do
     resource :bookmarks, only: [:create, :destroy]
     resources :post_comments, only: [:create, :destroy]
   end
+  resources :contacts, only: [:new, :create]
+  get 'contacts/confirm', to: 'contacts#error'
+  post 'contacts/confirm', to: 'contacts#confirm', as: 'confirm'
 end

@@ -18,6 +18,7 @@ ja:
       user: "アカウント"
       post_comment: "コメント"
       post: "投稿"
+      contact: "お問い合わせ"
 
     attributes:
       user:
@@ -36,6 +37,13 @@ ja:
         reason_for_selection: "商品を選んだ理由"
         good_point: "商品のメリット"
         bad_point: "商品のデメリット"
+
+      contact:
+        name: "お名前"
+        email: "メールアドレス"
+        phone_number: "電話番号"
+        message: "お問い合わせ内容"
+
   date:
     abbr_day_names:
     - 日

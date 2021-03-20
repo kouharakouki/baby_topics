@@ -1,3 +1,4 @@
+<!--投稿削除時にアラートで確認、コメント一覧から削除・コメント数の更新を行って表示を変更-->
 alert('本当に削除しますか？')
 $('#comments_area').html("<%= j(render partial: 'post_comments/index', locals: {post: @post.post_comments.order(id: "DESC")}) %>")
 $('.comment_count').html("コメント数：<%= @post.post_comments.count %>件")

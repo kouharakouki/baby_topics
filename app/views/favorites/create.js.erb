@@ -1,1 +1,2 @@
+<!--いいねボタンが押された時に、いいねボタンの表示を変えてビューに返す-->
 $('.favorite-btn_<%= @post.id %>').html("<%= j(render partial: 'favorites/favorite-btn', locals: {post: @post}) %>");

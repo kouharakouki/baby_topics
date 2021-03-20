@@ -1,16 +1,24 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row">
     <div class="col-auto mx-auto">
       <h3>アカウント一覧画面</h3>
     </div>
   </div>
-  <%= search_form_for @qu do |f| %>
 
-  <%= f.search_field :user_name_start, placeholder: "アカウント名で検索" %>
+  <div class="row justify-content-center my-3">
+    <div class="col-md-3">
+      <%= search_form_for @qu do |f| %>
+        <div class="input-group">
+          <%= f.search_field :user_name_start, placeholder: "アカウント名で検索", class: "form-control" %>
+          <span class="input-group-btn">
+            <%= button_tag "検索", :name => nil, class: "btn btn-orange" %>
+          </span>
+        </div>
+      <% end %>
+    </div>
+  </div>
 
-  <%= f.submit %>
-  <% end %>
-  <div class="row mt-md-4">
+  <div class="row mt-md-4 ">
     <div class="col-md-10 offset-md-1">
       <table class="table">
         <thead class="thead-lignt">
@@ -27,7 +35,9 @@
           <% @users.each do |user| %>
             <tr>
               <td>
-                <%= attachment_image_tag(user, :profile_image, fallback: "no_image.jpg", size:'40x40', class: "rounded-circle" ) %>
+                <%= link_to user_path(user.id) do %>
+                  <%= attachment_image_tag(user, :profile_image, fallback: "no_image.jpg", size:'40x40', class: "rounded-circle" ) %>
+                <% end %>
               </td>
               <td>
                 <%= link_to user_path(user.id) do %>
@@ -48,11 +58,12 @@
                 <% end %>
               </td>
               <td>
+                <!--ログインユーザーの表示部分にはフォローボタンが表示されないように-->
                 <% unless user == current_user %>
                   <% if current_user.following?(user) %>
-                    <%= link_to 'フォロー外す', user_relationships_path(user), class: 'btn btn-info btn-block', method: :delete %>
+                    <%= link_to 'フォロー外す', user_relationships_path(user), class: 'btn btn-pink btn-block', method: :delete %>
                   <% else %>
-                    <%= link_to 'フォローする', user_relationships_path(user), class: 'btn btn-success btn-block', method: :post %>
+                    <%= link_to 'フォローする', user_relationships_path(user), class: 'btn btn-blue btn-block', method: :post %>
                   <% end %>
                 <% end %>
               </td>
@@ -60,7 +71,12 @@
           <% end %>
         </tbody>
       </table>
-      <%= paginate @users %>
+      <div class="row mt-5">
+        <div class="col-auto mx-auto">
+          <!--1ページに10件のデータを表示-->
+          <%= paginate @users %>
+        </div>
+      </div>
     </div>
   </div>
 </div>
