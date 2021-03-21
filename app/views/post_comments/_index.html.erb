@@ -22,7 +22,7 @@
       </div>
       <div class="col-md-1">
         <% if post_comment.user == current_user %>
-          <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, remote: true, class: "btn btn-danger" %>
+          <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, remote: true, class: "btn btn-pink" %>
         <% end %>
       </div>
     </div>

@@ -17,10 +17,22 @@
  @import 'font-awesome-sprockets';
  @import 'font-awesome';
 
- // .image {
- //  object-fit: contain;
- //  background-color: #FFFFEE;
- // }
+ * {
+  font-family: 'Noto Sans JP', sans-serif;
+ }
+
+ .nav-item {
+  font-size: 14px;
+ }
+
+ .navbar-nav li:hover {
+  text-decoration: underline !important;
+ }
+
+ .navbar-nav li +li{
+  border-left: 1px solid white;
+  padding: 0 5px 0 5px;
+}
 
  header {
   background-color: #FF9900;
@@ -86,12 +98,13 @@
 }
 
 .product_index_image {
- // max-width: 250px;
- // height: 333px;
  width: 206px;
  height: 206px;
  object-fit: cover;
- // object-position: center center;
+}
+
+.product_index_image:hover {
+  opacity: 0.8;
 }
 
 .alert-text {
@@ -107,11 +120,6 @@ p {
 }
 
 .btn-orange{
- background-color: #FF9900;
- color: #FFFFEE;
-}
-
-.btn-orange:hover{
  background-color: #FF9900;
  color: #FFFFEE;
 }
@@ -256,3 +264,4 @@ p {
  height: 50px;
  padding-top: 10px;
 }
+

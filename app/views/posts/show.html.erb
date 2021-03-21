@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-auto mx-auto">
-      <h3>投稿詳細画面</h3>
+      <h4>投稿詳細画面</h4>
     </div>
   </div>
 
@@ -20,13 +20,13 @@
       </div>
       <% if @post.user != current_user %>
         <div class="row justify-content-center mt-3">
-          <div class="col-md-6">
+          <div class="col-md-8">
             <div class="bookmark-btn_<%= @post.id %>"><%= render "bookmarks/bookmark-btn", post: @post %></div>
           </div>
         </div>
       <% else %>
         <div class="row justify-content-center mt-3">
-          <div class="col-md-6">
+          <div class="col-md-8">
             <%= link_to "編集する", edit_post_path(@post), class: 'form-control btn btn-orange' %>
           </div>
         </div>

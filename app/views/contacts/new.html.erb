@@ -1,11 +1,17 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-auto mx-auto">
-      <h3>お問い合わせ画面</h3>
+      <h4>お問い合わせ画面</h4>
     </div>
   </div>
   <!--エラーメッセージの部分テンプレート-->
   <%= render 'contacts/error', contact: @contact %>
+
+  <div class="row justify-content-center">
+    <div class="col-auto mx-auto">
+      <p class="alert-text">全項目入力必須です</p>
+    </div>
+  </div>
 
   <%= form_with model: @contact, url: confirm_path, local: true do |f| %>
     <div class="from-group">
