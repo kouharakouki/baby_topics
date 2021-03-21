@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-3 offset-md-1">
-      <%= attachment_image_tag @user, :profile_image, class:"profile_image", fallback: "no_image.jpg", size:'200x200', class: "rounded-circle"  %>
+      <%= attachment_image_tag @user, :profile_image, :fill, 200, 200, class:"profile_image", fallback: "no_image.jpg", size:'200x200', class: "rounded-circle" %>
     </div>
     <div class="col-md-7">
       <h5 class="row">
@@ -12,15 +12,15 @@
       </div>
       <div class="row-md-7 mt-3">
         <div class="d-flex justify-content-around">
-          <div><%= "投稿#{@user.posts.count}件" %></div>
-          <div>
-            <%= link_to user_followings_path(@user.id) do %>
-              <%= "フォロー#{@user.followers.count}人" %>
-            <% end %>
-          </div>
+          <div><%= "投稿数#{@user.posts.count}件" %></div>
           <div>
             <%= link_to user_followers_path(@user.id) do %>
               <%= "フォロワー#{@user.followings.count}人" %>
+            <% end %>
+          </div>
+          <div>
+            <%= link_to user_followings_path(@user.id) do %>
+              <%= "フォロー中#{@user.followers.count}人" %>
             <% end %>
           </div>
         </div>

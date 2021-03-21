@@ -26,7 +26,8 @@
   <P class="text-body">商品の特徴を捉えた投稿記事</P>
   <div class="text-body-small">
     ベビー用品を検索する際に、参考になる口コミ情報が多いサイトです！</br>
-    それは投稿フォームに以下の内容を設けることで投稿する人が情報を整理しやすい内容になっているからです。</br>
+    それは投稿フォームに以下の内容を設けることで投稿する人が</br>
+    情報を整理しやすい内容になっているからです。</br>
     <span class="text-orange"><strong>
       ・この商品を選んだ理由</br>
       ・商品のメリット</br>
@@ -49,7 +50,7 @@
       <div class="col-md-4">
         <div class="col-auto">
           <div class="mb-3">
-            <%= attachment_image_tag post.user, :profile_image, class:"profile_image", fallback: "no_image.jpg", size:'50x50', class: "rounded-circle" %>
+            <%= attachment_image_tag post.user, :profile_image, :fill, 50, 50, class:"profile_image", fallback: "no_image.jpg", size:'50x50', class: "rounded-circle" %>
             <%= post.user.user_name %>
           </div>
           <div class="mb-3"><%= attachment_image_tag post, :image, class:"product_show_image" %></div>
@@ -118,7 +119,7 @@
               <div class="card-title">
                 <small>
                   <%= link_to user_path(post.user_id) do %>
-                    <%= attachment_image_tag post.user, :profile_image, class:"profile_image", fallback: "no_image.jpg", size:'25x25', class: "rounded-circle"  %>
+                    <%= attachment_image_tag post.user, :profile_image, :fill, 50, 50, class:"profile_image", fallback: "no_image.jpg", size:'30x30', class: "rounded-circle"  %>
                     <%= post.user.user_name %>
                   <% end %>
                 </small>

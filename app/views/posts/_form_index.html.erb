@@ -21,7 +21,7 @@
             <div class="card-title">
               <small>
                 <%= link_to user_path(post.user_id) do %>
-                  <%= attachment_image_tag post.user, :profile_image, class:"profile_image", fallback: "no_image.jpg", size:'25x25', class: "rounded-circle"  %>
+                  <%= attachment_image_tag post.user, :profile_image, :fill, 50, 50, class:"profile_image", fallback: "no_image.jpg", size:'30x30', class: "rounded-circle"  %>
                   <%= post.user.user_name %>
                 <% end %>
               </small>
