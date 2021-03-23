@@ -9,7 +9,7 @@
     <div class="col-md-4">
       <div class="mb-3">
         <%= link_to user_path(@post.user_id) do %>
-          <%= attachment_image_tag @post.user, :profile_image, :fill, 50, 50, class:"profile_image", fallback: "no_image.jpg", size:'50x50', class: "rounded-circle" %>
+          <%= attachment_image_tag @post.user, :profile_image, :fill, 50, 50, class:"profile_image rounded-circle", fallback: "no_image.jpg", size:'50x50'%>
           <%= @post.user.user_name %>
         <% end %>
       </div>
@@ -43,19 +43,19 @@
           <%= @post.product_name %></td>
         </tr>
         <tr>
-          <td>＜価格帯＞<br />
+          <td>＜商品の価格帯＞<br />
           <%= @post.price %></td>
         </tr>
         <tr>
-          <td>＜選んだ理由＞<br />
+          <td>＜商品を選んだ理由・使っている理由＞<br />
           <%= @post.reason_for_selection %></td>
         </tr>
         <tr>
-          <td>＜メリット＞<br />
+          <td>＜商品のメリット＞<br />
           <%= @post.good_point %></td>
         </tr>
         <tr>
-          <td>＜メリット＞<br />
+          <td>＜商品のデメリット＞<br />
           <%= @post.bad_point %></td>
         </tr>
         <tr>

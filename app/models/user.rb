@@ -19,7 +19,7 @@ class User < ApplicationRecord
 
   validates :name, presence: true
   validates :user_name, uniqueness: { message: 'は既に使用されており、登録できません' }, presence: true
-  validates :phone_number, length: { minimum: 10 }
+  validates_format_of :phone_number, with:  /\A\d{10,11}\z/
 
   def self.guest
     find_or_create_by(email: 'guest@example.com') do |user|
@@ -30,7 +30,7 @@ class User < ApplicationRecord
       user.confirmed_at = Time.now
     end
   end
-  
+
   # 下の３項目はビューでフォローする/フォロー外すボタンの表示で使用
   def follow(user_id)
     followers.create(followed_id: user_id)

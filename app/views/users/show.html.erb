@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-3 offset-md-1">
-      <%= attachment_image_tag @user, :profile_image, :fill, 200, 200, class:"profile_image", fallback: "no_image.jpg", size:'200x200', class: "rounded-circle" %>
+      <%= attachment_image_tag @user, :profile_image, :fill, 200, 200, class:"profile_image rounded-circle", fallback: "no_image.jpg", size:'200x200' %>
     </div>
     <div class="col-md-7">
       <h5 class="row">

@@ -6,12 +6,16 @@
         ベビトピはベビー用品の口コミ投稿に</br>
         特化したSNSサイトです。</strong>
       </p>
-      <div>
-        <%= link_to "ログイン", new_user_session_path, class: "btn btn-orange top-btn" %>
-      </div>
-      <div>
-        <%= link_to "新規アカウント作成", new_user_registration_path, class: "btn btn-blue top-btn" %>
-      </div>
+      <!--ログインしていなければログイン・新規アカウント作成ボタンを表示-->
+      <% if user_signed_in? %>
+      <%else %>
+        <div>
+          <%= link_to "ログイン", new_user_session_path, class: "btn btn-orange top-btn" %>
+        </div>
+        <div>
+          <%= link_to "新規アカウント作成", new_user_registration_path, class: "btn btn-blue top-btn" %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
@@ -46,14 +50,14 @@
 <div class="container-fluid">
   <div class="row mt-4">
     <!--いいねが一番多い記事の詳細画面を１件のみ表示-->
-    <% @post.each do |post| %>
+    <% @post.each do |top| %>
       <div class="col-md-4">
         <div class="col-auto">
           <div class="mb-3">
-            <%= attachment_image_tag post.user, :profile_image, :fill, 50, 50, class:"profile_image", fallback: "no_image.jpg", size:'50x50', class: "rounded-circle" %>
-            <%= post.user.user_name %>
+            <%= attachment_image_tag top.user, :profile_image, :fill, 50, 50, class:"profile_image rounded-circle", fallback: "no_image.jpg", size:'50x50' %>
+            <%= top.user.user_name %>
           </div>
-          <div class="mb-3"><%= attachment_image_tag post, :image, class:"product_show_image" %></div>
+          <div class="mb-3"><%= attachment_image_tag top, :image, class:"product_show_image" %></div>
         </div>
       </div>
 
@@ -61,31 +65,31 @@
         <table class="table">
           <tr>
             <td>＜商品ジャンル＞<br />
-            <%= post.genre %></td>
+            <%= top.genre %></td>
           </tr>
           <tr>
             <td>＜商品名＞<br />
-            <%= post.product_name %></td>
+            <%= top.product_name %></td>
           </tr>
           <tr>
             <td>＜価格帯＞<br />
-            <%= post.price %></td>
+            <%= top.price %></td>
           </tr>
           <tr>
             <td>＜選んだ理由＞<br />
-            <%= post.reason_for_selection %></td>
+            <%= top.reason_for_selection %></td>
           </tr>
           <tr>
             <td>＜メリット＞<br />
-            <%= post.good_point %></td>
+            <%= top.good_point %></td>
           </tr>
           <tr>
             <td>＜メリット＞<br />
-            <%= post.bad_point %></td>
+            <%= top.bad_point %></td>
           </tr>
           <tr>
             <td>＜補足情報＞<br />
-            <%= post.free_text %></td>
+            <%= top.free_text %></td>
           </tr>
         </table>
       </div>
@@ -119,7 +123,7 @@
               <div class="card-title">
                 <small>
                   <%= link_to user_path(post.user_id) do %>
-                    <%= attachment_image_tag post.user, :profile_image, :fill, 50, 50, class:"profile_image", fallback: "no_image.jpg", size:'30x30', class: "rounded-circle"  %>
+                    <%= attachment_image_tag post.user, :profile_image, :fill, 50, 50, class:"profile_image rounded-circle", fallback: "no_image.jpg", size:'30x30' %>
                     <%= post.user.user_name %>
                   <% end %>
                 </small>
