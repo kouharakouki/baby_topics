@@ -1,5 +1,4 @@
 class RelationshipsController < ApplicationController
-
   # followはuser.rbに定義　newとsaveを合わせた挙動
   def create
     @user = User.find(params[:user_id])

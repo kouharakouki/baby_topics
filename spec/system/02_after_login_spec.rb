@@ -159,11 +159,14 @@ describe '[STEP2] ユーザログイン後のテスト' do
         click_button '変更内容を保存する'
       end
 
-      it '商品名が正しく更新される' do
+      it 'ジャンル名が正しく更新される' do
         expect(post.reload.genre).not_to eq @post_old_genre
       end
       it '商品名が正しく更新される' do
         expect(post.reload.product_name).not_to eq @post_old_product_name
+      end
+      it '商品の価格帯が正しく更新される' do
+        expect(post.reload.price).not_to eq @post_old_price
       end
       it '商品を選んだ理由が正しく更新される' do
         expect(post.reload.reason_for_selection).not_to eq @post_old_reason_for_selection
@@ -277,7 +280,8 @@ describe '[STEP2] ユーザログイン後のテスト' do
         fill_in 'user[name]', with: Faker::Lorem.characters(number: 9)
         fill_in 'user[user_name]', with: Faker::Lorem.characters(number: 9)
         fill_in 'user[introduction]', with: Faker::Lorem.characters(number: 19)
-        fill_in 'user[phone_number]', with: Faker::Number.number(digits: Faker::Number.between(from: 10, to: 11))
+        fill_in 'user[phone_number]', with:
+        Faker::Number.number(digits: Faker::Number.between(from: 10, to: 11))
         click_button '変更内容を保存する'
       end
 

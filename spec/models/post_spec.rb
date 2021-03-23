@@ -71,16 +71,19 @@ RSpec.describe 'Postモデルのテスト', type: :model do
         expect(Post.reflect_on_association(:user).macro).to eq :belongs_to
       end
     end
+
     context 'Post_commentモデルとの関係' do
       it '1:Nとなっている' do
         expect(Post.reflect_on_association(:post_comments).macro).to eq :has_many
       end
     end
+
     context 'favoriteモデルとの関係' do
       it '1:Nとなっている' do
         expect(Post.reflect_on_association(:favorites).macro).to eq :has_many
       end
     end
+
     context 'Bookmarkモデルとの関係' do
       it '1:Nとなっている' do
         expect(Post.reflect_on_association(:bookmarks).macro).to eq :has_many

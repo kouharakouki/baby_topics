@@ -19,7 +19,7 @@ class User < ApplicationRecord
 
   validates :name, presence: true
   validates :user_name, uniqueness: { message: 'は既に使用されており、登録できません' }, presence: true
-  validates_format_of :phone_number, with:  /\A\d{10,11}\z/
+  validates_format_of :phone_number, with: /\A\d{10,11}\z/
 
   def self.guest
     find_or_create_by(email: 'guest@example.com') do |user|
