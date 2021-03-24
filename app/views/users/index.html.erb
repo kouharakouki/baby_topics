@@ -21,50 +21,55 @@
   <div class="row mt-md-4 ">
     <div class="col-md-10 offset-md-1">
       <table class="table">
-        <thead class="thead-lignt">
-          <tr>
-            <th>ユーザーネーム</th>
-            <th>投稿数</th>
-            <th>フォロワー数</th>
-            <th>フォロー数</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @users.each do |user| %>
+        <!--検索の結果、ユーザーがいなければ「ユーザーはいません」と表示-->
+        <% if @users.count == 0 %>
+          <tr>ユーザーはいません</tr>
+        <% else %>
+          <thead class="thead-lignt">
             <tr>
-              <td>
-                <%= link_to user_path(user.id) do %>
-                  <%= attachment_image_tag(user, :profile_image, :fill, 50, 50, fallback: "no_image.jpg", size:'50x50', class: "rounded-circle" ) %>
-                  <%= user.user_name %>
-                <% end %>
-              </td>
-              <td>
-                <%= "投稿数#{user.posts.count}件" %>
-              </td>
-              <td>
-                <%= link_to user_followers_path(user.id) do %>
-                  <%= "フォロワー#{user.followings.count}人" %>
-                <% end %>
-              </td>
-              <td>
-                <%= link_to user_followings_path(user.id) do %>
-                  <%= "フォロー中#{user.followers.count}人" %>
-                <% end %>
-              </td>
-              <td>
-                <!--ログインユーザーの表示部分にはフォローボタンが表示されないように-->
-                <% unless user == current_user %>
-                  <% if current_user.following?(user) %>
-                    <%= link_to 'フォロー外す', user_relationships_path(user), class: 'btn btn-pink btn-block', method: :delete %>
-                  <% else %>
-                    <%= link_to 'フォローする', user_relationships_path(user), class: 'btn btn-blue btn-block', method: :post %>
-                  <% end %>
-                <% end %>
-              </td>
+              <th>ユーザーネーム</th>
+              <th>投稿数</th>
+              <th>フォロワー数</th>
+              <th>フォロー数</th>
+              <th></th>
             </tr>
-          <% end %>
-        </tbody>
+          </thead>
+          <tbody>
+            <% @users.each do |user| %>
+              <tr>
+                <td>
+                  <%= link_to user_path(user.id) do %>
+                    <%= attachment_image_tag(user, :profile_image, :fill, 50, 50, fallback: "no_image.jpg", size:'50x50', class: "rounded-circle" ) %>
+                    <%= user.user_name %>
+                  <% end %>
+                </td>
+                <td>
+                  <%= "投稿数#{user.posts.count}件" %>
+                </td>
+                <td>
+                  <%= link_to user_followers_path(user.id) do %>
+                    <%= "フォロワー#{user.followings.count}人" %>
+                  <% end %>
+                </td>
+                <td>
+                  <%= link_to user_followings_path(user.id) do %>
+                    <%= "フォロー中#{user.followers.count}人" %>
+                  <% end %>
+                </td>
+                <td>
+                  <!--ログインユーザーの表示部分にはフォローボタンが表示されないように-->
+                  <% unless user == current_user %>
+                    <% if current_user.following?(user) %>
+                      <%= link_to 'フォロー外す', user_relationships_path(user), class: 'btn btn-pink btn-block', method: :delete %>
+                    <% else %>
+                      <%= link_to 'フォローする', user_relationships_path(user), class: 'btn btn-blue btn-block', method: :post %>
+                    <% end %>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        <% end %>
       </table>
       <div class="row mt-5">
         <div class="col-auto mx-auto">

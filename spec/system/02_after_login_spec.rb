@@ -13,6 +13,66 @@ describe '[STEP2] ユーザログイン後のテスト' do
     click_button 'ログイン'
   end
 
+  describe '新規投稿画面のテスト' do
+    before do
+      visit new_post_path
+    end
+
+    context '表示内容の確認' do
+      it 'URLが正しい' do
+        expect(current_path).to eq '/posts/new'
+      end
+      it 'ジャンルフォームが表示される' do
+        expect(page).to have_field 'post[genre]'
+      end
+      it '商品画像フォームが表示される' do
+        expect(page).to have_field 'post[image]'
+      end
+      it '商品名フォームが表示される' do
+        expect(page).to have_field 'post[product_name]'
+      end
+      it '商品の価格帯フォームが表示される' do
+        expect(page).to have_field 'post[price]'
+      end
+      it '商品を選んだ理由フォームが表示される' do
+        expect(page).to have_field 'post[reason_for_selection]'
+      end
+      it '商品のメリットフォームが表示される' do
+        expect(page).to have_field 'post[good_point]'
+      end
+      it '商品のデメリットフォームが表示される' do
+        expect(page).to have_field 'post[bad_point]'
+      end
+      it '商品の補足情報フォームが表示される' do
+        expect(page).to have_field 'post[free_text]'
+      end
+      it '投稿するボタンが表示される' do
+        expect(page).to have_button '投稿する'
+      end
+    end
+
+    context '投稿成功のテスト' do
+      before do
+        select '絵本', from: 'post[genre]'
+        attach_file 'post[image]', "#{Rails.root}/spec/factories/test_image.jpg"
+        fill_in 'post[product_name]', with: Faker::Lorem.characters(number: 10)
+        select '1,000円台', from: 'post[price]'
+        fill_in 'post[reason_for_selection]', with: Faker::Lorem.characters(number: 10)
+        fill_in 'post[good_point]', with: Faker::Lorem.characters(number: 10)
+        fill_in 'post[bad_point]', with: Faker::Lorem.characters(number: 10)
+        fill_in 'post[free_text]', with: Faker::Lorem.characters(number: 10)
+      end
+
+      it '自分の新しい投稿が正しく保存される' do
+        expect { click_button '投稿する' }.to change(user.posts, :count).by(1)
+      end
+      it 'リダイレクト先が、保存できた投稿の詳細画面になっている' do
+        click_button '投稿する'
+        expect(current_path).to eq '/posts/' + Post.last.id.to_s
+      end
+    end
+  end
+
   describe '投稿一覧画面のテスト' do
     before do
       visit posts_path
@@ -143,6 +203,7 @@ describe '[STEP2] ユーザログイン後のテスト' do
     context '編集成功のテスト' do
       before do
         @post_old_genre = post.genre
+        @post_old_image = post.image
         @post_old_product_name = post.product_name
         @post_old_price = post.price
         @post_old_reason_for_selection = post.reason_for_selection
@@ -150,6 +211,7 @@ describe '[STEP2] ユーザログイン後のテスト' do
         @post_old_bad_point = post.bad_point
         @post_old_free_text = post.free_text
         select '絵本', from: 'post[genre]'
+        attach_file 'post[image]', "#{Rails.root}/spec/factories/test_image.jpg"
         fill_in 'post[product_name]', with: Faker::Lorem.characters(number: 10)
         select '1,000円台', from: 'post[price]'
         fill_in 'post[reason_for_selection]', with: Faker::Lorem.characters(number: 10)
@@ -161,6 +223,9 @@ describe '[STEP2] ユーザログイン後のテスト' do
 
       it 'ジャンル名が正しく更新される' do
         expect(post.reload.genre).not_to eq @post_old_genre
+      end
+      it '商品画像が正しく更新される' do
+        expect(post.reload.image).not_to eq @post_old_image
       end
       it '商品名が正しく更新される' do
         expect(post.reload.product_name).not_to eq @post_old_product_name
@@ -275,10 +340,12 @@ describe '[STEP2] ユーザログイン後のテスト' do
       before do
         @user_old_name = user.name
         @user_old_user_name = user.user_name
+        @user_old_profile_image = user.profile_image
         @user_old_intrpduction = user.introduction
         @user_old_phone_number = user.phone_number
         fill_in 'user[name]', with: Faker::Lorem.characters(number: 9)
         fill_in 'user[user_name]', with: Faker::Lorem.characters(number: 9)
+        attach_file 'user[profile_image]', "#{Rails.root}/spec/factories/test_image.jpg"
         fill_in 'user[introduction]', with: Faker::Lorem.characters(number: 19)
         fill_in 'user[phone_number]', with:
         Faker::Number.number(digits: Faker::Number.between(from: 10, to: 11))
@@ -290,6 +357,9 @@ describe '[STEP2] ユーザログイン後のテスト' do
       end
       it 'ユーザーネームが正しく更新される' do
         expect(user.reload.user_name).not_to eq @user_old_user_name
+      end
+      it 'プロフィール画像が正しく更新される' do
+        expect(user.reload.profile_image).not_to eq @user_old_profile_image
       end
       it '自己紹介が正しく更新される' do
         expect(user.reload.introduction).not_to eq @user_old_intrpduction

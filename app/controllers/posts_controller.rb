@@ -9,9 +9,13 @@ class PostsController < ApplicationController
 
   # 投稿詳細画面にコメント投稿機能、コメント一覧表示がある
   def show
-    @post = Post.find(params[:id])
-    @post_comments = @post.post_comments.order(id: "DESC")
-    @post_comment = PostComment.new
+    @post = Post.find_by(id: params[:id])
+    if @post.present?
+      @post_comments = @post.post_comments.order(id: "DESC")
+      @post_comment = PostComment.new
+    else
+      redirect_to user_path(current_user), alert: "不正なアクセスです。"
+    end
   end
 
   # 空のインスタンス変数を渡して情報を新しく入力
@@ -21,9 +25,15 @@ class PostsController < ApplicationController
 
   # 投稿編集画面。ログインユーザーでなければ、投稿一覧に戻す
   def edit
-    @post = Post.find(params[:id])
-    if @post.user != current_user
-      redirect_to posts_path, alert: '不正なアクセスです'
+    @post = Post.find_by(id: params[:id])
+    if @post.present?
+      if @post.user == current_user
+        render "edit"
+      else
+        redirect_to user_path(current_user), alert: '不正なアクセスです'
+      end
+    else
+      redirect_to user_path(current_user), alert: '不正なアクセスです'
     end
   end
 

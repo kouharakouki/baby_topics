@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :post do
     product_name { Faker::Lorem.characters(number: 8) }
-    image_id { Faker::Lorem.characters(number: 20) }
+    image { File.open("#{Rails.root}/spec/factories/test_image.jpg") }
     genre { 0 }
     price { 0 }
     reason_for_selection { Faker::Lorem.characters(number: 10) }

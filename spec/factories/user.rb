@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :user do
     name { Faker::Lorem.characters(number: 10) }
-    profile_image { Faker::Lorem.characters(number: 20) }
+    profile_image { File.open("#{Rails.root}/spec/factories/test_image.jpg") }
     email { Faker::Internet.email }
     password { "password" }
     password_confirmation { "password" }

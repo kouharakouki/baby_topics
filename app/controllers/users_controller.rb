@@ -14,9 +14,9 @@ class UsersController < ApplicationController
   def bookmark
     bookmarks = Bookmark.where(user_id: current_user.id).order(created_at: "DESC").pluck(:post_id)
     @posts = Kaminari.paginate_array(Post.find(bookmarks)).page(params[:page]).per(10)
-    @user = User.find(params[:id])
+    @user = User.find_by(id: params[:id])
     if @user != current_user
-      redirect_to users_path(current_user.id), alert: '不正なアクセスです'
+      redirect_to user_path(current_user), alert: '不正なアクセスです'
     end
   end
 
@@ -27,33 +27,45 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
-    @posts = @user.posts.page(params[:page]).reverse_order.per(10)
+    @user = User.find_by(id: params[:id])
+    if @user.present?
+      @posts = @user.posts.page(params[:page]).reverse_order.per(10)
+    else
+      redirect_to user_path(current_user), alert: "不正なアクセスです。"
+    end
   end
 
   # フォローしている人の一覧画面を表示
   def followings
-    @user = User.find(params[:user_id])
-    @followings = @user.following_users
+    @user = User.find_by(id: params[:user_id])
+    if @user.present?
+      @followings = @user.following_users
+    else
+      redirect_to user_path(current_user), alert: "不正なアクセスです。"
+    end
   end
 
   # フォローされている人の一覧画面を表示
   def followers
-    @user = User.find(params[:user_id])
-    @followers = @user.follower_users
+    @user = User.find_by(id: params[:user_id])
+    if @user.present?
+      @followers = @user.follower_users
+    else
+      redirect_to user_path(current_user), alert: "不正なアクセスです。"
+    end
   end
 
   def edit
-    @user = User.find(params[:id])
+    @user = User.find_by(id: params[:id])
     if @user != current_user
-      redirect_to users_path(current_user.id), alert: '不正なアクセスです'
+      redirect_to user_path(current_user), alert: '不正なアクセスです'
     end
   end
 
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      redirect_to user_path(current_user.id), notice: 'アカウント情報の編集が完了しました'
+      redirect_to user_path(current_user), notice: 'アカウント情報の編集が完了しました'
     else
       render :edit
     end
@@ -61,9 +73,9 @@ class UsersController < ApplicationController
 
   # 退会の確認画面を表示
   def unsubscribe
-    @user = User.find(params[:id])
+    @user = User.find_by(id: params[:id])
     if @user != current_user
-      redirect_to user_path(current_user.id), alert: '不正なアクセスです'
+      redirect_to user_path(current_user), alert: '不正なアクセスです'
     end
   end
 
