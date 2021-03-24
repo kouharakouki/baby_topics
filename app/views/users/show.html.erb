@@ -1,15 +1,58 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row">
     <div class="col-md-3 offset-md-1">
-      <%= attachment_image_tag @user, :profile_image, class:"profile_image", fallback: "no_image.jpg", size:'250x250', class: "rounded-circle"  %>
+      <%= attachment_image_tag @user, :profile_image, :fill, 200, 200, class:"profile_image rounded-circle", fallback: "no_image.jpg", size:'200x200' %>
     </div>
     <div class="col-md-7">
-      <div class="row">
-        <%= @user.user_name %>
+      <h5 class="row">
+        ユーザーネーム：<%= @user.user_name %>
+      </h5>
+      <div class="row mt-3">
+        自己紹介：<%= @user.introduction %>
       </div>
-      <div class="row mt-md-3">
-        <%= @user.introduction %>
+      <div class="row-md-7 mt-3">
+        <div class="d-flex justify-content-around">
+          <div><%= "投稿数#{@user.posts.count}件" %></div>
+          <div>
+            <%= link_to user_followers_path(@user.id) do %>
+              <%= "フォロワー#{@user.followings.count}人" %>
+            <% end %>
+          </div>
+          <div>
+            <%= link_to user_followings_path(@user.id) do %>
+              <%= "フォロー中#{@user.followers.count}人" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-auto mx-auto">
+          <!--ログインユーザーか、そうでないかで表示するボタンを変更-->
+          <% if @user == current_user %>
+            <%= link_to "プロフィールを編集する", edit_user_path(@user), class: 'btn btn-orange' %>
+            <%= link_to "ブックマーク一覧画面へ", users_bookmark_path, class: 'btn btn-orange' %>
+          <% else %>
+            <% if current_user.following?(@user) %>
+              <%= link_to 'フォロー外す', user_relationships_path(@user), class: 'btn btn-pink btn-block', method: :delete %>
+            <% else %>
+              <%= link_to 'フォローする', user_relationships_path(@user), class: 'btn btn-blue btn-block', method: :post %>
+            <% end %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
+
+  <!--投稿の有無で表示内容を変更-->
+  <% if @posts.count == 0 %>
+    <div class="row">
+      <div class="col-auto mx-auto">
+        <h5>投稿がありません</h5>
+      </div>
+    </div>
+  <% else %>
+    <!--一覧画面表示の部分テンプレートを表示-->
+    <%= render "posts/form_index", posts: @posts %>
+  <% end %>
+
 </div>

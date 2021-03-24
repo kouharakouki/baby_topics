@@ -1,72 +1,61 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-auto mx-auto">
-      <h3>アカウント情報を変更する</h3>
+      <h4>アカウント情報を変更する</h4>
     </div>
   </div>
+
+  <!--エラーメッセージの部分テンプレートを表示-->
+  <%= render 'users/error', user: @user %>
+
   <%= form_with model: @user, url: user_path, local:true do |f| %>
-    <div class="row justify-content-center mt-md-4">
+    <div class="row justify-content-center mt-4">
       <div class="col-auto mx-auto">
-        <%= attachment_image_tag(@user, :profile_image, fallback: "no_image.jpg", size:'100x100') %>
+        <%= attachment_image_tag(@user, :profile_image, :fill, 200, 200, fallback: "no_image.jpg", size:'200x200', class: "rounded-circle" ) %>
       </div>
     </div>
-    <div class="row justify-content-center mt-md-3">
-      <div class="col-md-2">
-        フルネーム
+    <div class="from-group">
+      <div class="row justify-content-center mt-3">
+        <div class="col-md-4">
+          <%= f.text_field :name, autofocus: true, placeholder: "フルネーム", class: "form-control" %>
+        </div>
       </div>
-      <div class="col-md-2">
-        <%= f.text_field :name %>
+      <div class="row justify-content-center mt-3">
+        <div class="col-md-4">
+          <%= f.text_field :user_name, autofocus: true, placeholder: "ユーザーネーム", class: "form-control" %>
+        </div>
       </div>
-    </div>
-    <div class="row justify-content-center mt-md-3">
-      <div class="col-md-2">
-        ユーザーネーム
+      <div class="row justify-content-center mt-3">
+        <div class="col-md-4">
+          プロフィール画像<%= f.attachment_field :profile_image %>
+        </div>
       </div>
-      <div class="col-md-2">
-        <%= f.text_field :user_name %>
+      <div class="row justify-content-center mt-3">
+        <div class="col-md-4">
+          <%= f.text_area :introduction, rows:"8", autofocus: true, placeholder: "自己紹介", class: "form-control" %>
+        </div>
       </div>
-    </div>
-    <div class="row justify-content-center mt-md-3">
-      <div class="col-md-2">
-        アカウント画像
+      <div class="row justify-content-center mt-3">
+        <div class="col-md-4">
+          <%= f.text_field :phone_number, autofocus: true, placeholder: "電話番号", class: "form-control" %>
+        </div>
       </div>
-      <div class="col-md-2">
-        <%= f.attachment_field :profile_image %>
+      <div class="row justify-content-center mt-3">
+        <div class="col-md-4">
+          <%= @user.email %>
+        </div>
       </div>
-    </div>
-    <div class="row justify-content-center mt-md-3">
-      <div class="col-md-2">
-        自己紹介
-      </div>
-      <div class="col-md-2">
-        <%= f.text_area :introduction, rows:"8" %>
-      </div>
-    </div>
-    <div class="row justify-content-center mt-md-3">
-      <div class="col-md-2">
-        電話番号
-      </div>
-      <div class="col-md-2">
-        <%= f.text_field :phone_number %>
-      </div>
-    </div>
-    <div class="row justify-content-center mt-md-3">
-      <div class="col-md-2">
-        メールアドレス
-      </div>
-      <div class="col-md-2">
-        <%= f.text_field :email %>
-      </div>
-    </div>
-    <div class="row justify-content-center mt-md-4">
-      <div class="col-auto mx-auto">
-        <%= f.submit '変更内容を保存する', class: 'btn btn-success' %>
+      <div class="row justify-content-center mt-4">
+        <div class="col-md-4">
+          <%= f.submit '変更内容を保存する', class: "form-control btn btn-orange" %>
+        </div>
       </div>
     </div>
   <% end %>
-  <div class="row justify-content-center mt-md-3">
-      <div class="col-auto mx-auto">
-        <%= link_to '退会する', users_unsubscribe_path, class: 'btn btn-danger' %>
-      </div>
+  <div class="row justify-content-center mt-4">
+    <div class="col-auto mx-auto">
+      <!--退会確認画面へ移動-->
+      退会をご希望の方は<%= link_to "こちら", users_unsubscribe_path %>から
     </div>
+  </div>
 </div>

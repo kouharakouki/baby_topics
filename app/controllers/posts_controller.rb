@@ -1,46 +1,75 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!
+
+  # ransackを用いた検索機能で投稿一覧を商品検索、ジャンル検索できる
   def index
-    @posts = Post.all
+    @q = Post.ransack(params[:q])
+    @posts = @q.result.page(params[:page]).reverse_order.per(10)
   end
 
+  # 投稿詳細画面にコメント投稿機能、コメント一覧表示がある
   def show
-    @post = Post.find(params[:id])
-    @post_comment = PostComment.new
+    @post = Post.find_by(id: params[:id])
+    if @post.present?
+      @post_comments = @post.post_comments.order(id: "DESC")
+      @post_comment = PostComment.new
+    else
+      redirect_to user_path(current_user), alert: "不正なアクセスです。"
+    end
   end
 
+  # 空のインスタンス変数を渡して情報を新しく入力
   def new
     @post = Post.new
   end
 
+  # 投稿編集画面。ログインユーザーでなければ、投稿一覧に戻す
   def edit
-    @post = Post.find(params[:id])
-    if @post.user != current_user
-      redirect_to posts_path
+    @post = Post.find_by(id: params[:id])
+    if @post.present?
+      if @post.user == current_user
+        render "edit"
+      else
+        redirect_to user_path(current_user), alert: '不正なアクセスです'
+      end
+    else
+      redirect_to user_path(current_user), alert: '不正なアクセスです'
     end
   end
 
+  # 投稿内容を保存
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    @post.save
-    redirect_to post_path(@post)
+    if @post.save
+      redirect_to post_path(@post), notice: '投稿が完了しました'
+    else
+      render :new
+    end
   end
 
+  # 投稿内容の編集情報をアップデートする
   def update
     @post = Post.find(params[:id])
-    @post.update(post_params)
-    redirect_to post_path
+    if @post.update(post_params)
+      redirect_to post_path, notice: '投稿内容の編集が完了しました'
+    else
+      render :edit
+    end
   end
 
+  # 投稿した内容を削除する
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    redirect_to posts_path
+    redirect_to posts_path, notice: '投稿内容を削除しました'
   end
 
   private
 
   def post_params
-    params.require(:post).permit(:product_name, :image, :genre, :price, :reason_for_selection, :good_point, :bad_point, :free_text)
+    params.require(:post).permit(:product_name, :image, :genre, :price,
+                                 :reason_for_selection,
+                                 :good_point, :bad_point, :free_text)
   end
 end

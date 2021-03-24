@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-auto mx-auto">
+      <h4>お問い合わせ画面</h4>
+    </div>
+  </div>
+  <!--エラーメッセージの部分テンプレート-->
+  <%= render 'contacts/error', contact: @contact %>
+
+  <div class="row justify-content-center">
+    <div class="col-auto mx-auto">
+      <p class="alert-text">全項目入力必須です</p>
+    </div>
+  </div>
+
+  <%= form_with model: @contact, url: confirm_path, local: true do |f| %>
+    <div class="from-group">
+      <div class="row justify-content-center mt-3">
+        <div class="col-md-4">
+          <%= f.text_field :name, autofocus: true, placeholder: "お名前", class: 'form-control' %>
+        </div>
+      </div>
+      <div class="row justify-content-center mt-3">
+        <div class="col-md-4">
+          <%= f.email_field :email, autofocus: true, placeholder: "返信先のEメールアドレス", class: "form-control" %>
+        </div>
+      </div>
+      <div class="row justify-content-center mt-3">
+        <div class="col-md-4">
+          <%= f.text_field :phone_number, autofocus: true, placeholder: "電話番号(ハイフン不要)", class: 'form-control' %>
+        </div>
+      </div>
+      <div class="row justify-content-center mt-3">
+        <div class="col-md-4">
+          <%= f.text_area :message, rows:"8", autofocus: true, placeholder: "お問い合わせ内容を入力して下さい", class: 'form-control' %>
+        </div>
+      </div>
+      <div class="row justify-content-center my-3">
+        <div class="col-md-4">
+          <!--入力内容確認ボタンで、confirmの確認画面に入力情報を渡す（保存はまだ）-->
+          <%= f.submit '入力内容を確認', class: "form-control btn btn-orange" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

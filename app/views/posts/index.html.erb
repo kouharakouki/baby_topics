@@ -1,39 +1,25 @@
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-auto mx-auto mb-2">
-      <h3>投稿一覧画面</h3>
-    </div>
-  </div>
-  <div class="row justify-content-center">
-    <div class="col-auto mx-auto mb-4">
-      <h5>画像をクリックすると詳細画面に移動します</h5>
-    </div>
-  </div>
+<div class="container-fluid">
   <div class="row">
-    <% @posts.each do |post| %>
-      <div class="col-md-3">
-        <div class="card-group">
-        <div class="card">
-          <%= link_to post_path(post.id) do %>
-            <%= attachment_image_tag post, :image, size:'255x255' %>
-          <% end %>
-          <div class="card-body">
-            <p class="card-text">
-              <%= link_to user_path(post.user_id) do %>
-                <%= post.user.user_name %><br />
-              <% end %>
-              〜<%= post.genre %>〜<br />
-              <%= post.product_name %><br />
-              コメント数：<%= post.post_comments.count %>件
-              ○いいね
-            </P>
-            <div class="card-footer">
-              <small class="text-muted">Last updated 3 mins ago</small>
-            </div>
-          </div>
-        </div>
-        </div>
-      </div>
-    <% end %>
+    <div class="col-auto mx-auto">
+      <h4>投稿一覧画面</h4>
+    </div>
   </div>
+
+  <!--ransackを用いたジャンル検索をビュー画面に表示-->
+  <div class="row justify-content-center my-3">
+    <div class="col-md-3">
+      <%= search_form_for @q do |f| %>
+        <div class="input-group">
+          <!--genresにpost.rbで定義したenum genreの中身が入っていてそれをプルタブで選択し検索できるように-->
+          <%= f.select :genre_eq, Post.genres, { include_blank: 'ジャンル別で検索できます'}, { class: 'form-control' , required: true } %>
+          <span class="input-group-btn">
+          <%= button_tag "検索", :name => nil, class: "btn btn-orange" %>
+          </span>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <!--一覧表示の部分テンプレートを表示-->
+  <%= render "posts/form_index", posts: @posts %>
 </div>

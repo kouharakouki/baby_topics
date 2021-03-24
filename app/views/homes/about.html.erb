@@ -1,1 +1,104 @@
-<h1>ベビトピの特徴と使い方</h1>
+<div class="about-visual">
+  <div class="about-bg-mask">
+    <div class="about-visual-content">
+      <p class="about-visual-text">
+        <strong>ベビトピについてと便利な使い方</strong>
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="main-text-title">
+  <P class="text-title">
+    <strong>ベビトピについて</strong>
+  </P>
+</div>
+
+<div class="about-text-body">
+  <P class="text-body">知りたい情報を見つけることに苦労していませんか？</P>
+  <div class="text-body-small">
+    出産前にベビー用品を揃えたい時、育児中にベビー用品が欲しくなった時、</br>
+    回りに相談できる人が少なかったので有名SNSサイトやブログ記事など検索して</br>
+    知りたい商品情報を探しました。</br>
+    ですが商品の記事を見つけても、比較検討するための情報が書かれている事が</br>
+    少なく検索にすごく時間がかかり負担になっていました。<br>
+    そこでベビー用品の口コミ投稿に特化したサイト</br>
+    （<span class="text-orange"><strong>商品を選んだ理由、メリット、デメリットなどの入力フォーム付き</strong></span>）があれば、</br>
+    商品検索にかかる時間を削減でき、ベビー用品選びのミスマッチも減り、</br>
+    忙しいママ・パパの負担を少しでも減らして赤ちゃんと向き合える時間が増えれば</br>
+    いいなと思いこのサイトを作成しました。</br>
+    少しでも皆様の支えになれば幸いです。
+  </div>
+</div>
+
+<div class="main-text-title">
+  <P class="text-title">
+    <strong>ベビトピの便利な使い方</strong>
+  </P>
+</div>
+
+<!--カードスタイルで特徴のデータを３件表示-->
+<div class="container-fluid">
+  <div class="row justify-content-center mb-3">
+    <div class="card-deck col-2.5 mx-1">
+      <div class="d-flex flex-wrap">
+        <div class="card border-light bg-light text-center mt-3" style="width: 23rem;">
+          <div class="card-header-about">
+            <strong>記事検索機能</strong>
+          </div>
+          <div class="about-image1"></div>
+          <div class="card-body">
+            <p class="card-text">
+              検索機能付きで気になる商品名で検索、また商品のジャンル別で検索ができます。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-deck col-2.5 mx-1">
+      <div class="d-flex flex-wrap">
+        <div class="card border-light bg-light text-center mt-3" style="width: 23rem;">
+          <div class="card-header-about">
+            <strong>フォロー・いいね機能</strong>
+          </div>
+          <div class="about-image2"></div>
+          <div class="card-body">
+            <p class="card-text">
+              気になる人をフォローして、その人の投稿記事をすぐに見る事ができます。また良い記事にはいいねをして評価できます。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-deck col-2.5 mx-1">
+      <div class="d-flex flex-wrap">
+        <div class="card border-light bg-light text-center mt-3" style="width: 23rem;">
+          <div class="card-header-about">
+            <strong>ブックマーク機能</strong>
+          </div>
+          <div class="about-image3"></div>
+          <div class="card-body">
+            <p class="card-text">
+              あとで見返したい記事はブックマークで保存して、すぐに見る事ができます。マイページにからブックマーク一覧ページへ。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--ログインしていなければログイン・新規アカウント作成ボタンを表示-->
+  <% if user_signed_in? %>
+  <%else %>
+  <div class="row justify-content-center mb-3">
+    <div class="col-auto">
+      <%= link_to "ログイン", new_user_session_path, class: "btn btn-orange top-btn" %>
+    </div>
+    <div class="col-auto">
+      <%= link_to "新規アカウント作成", new_user_registration_path, class: "btn btn-blue top-btn" %>
+    </div>
+  </div>
+  <% end %>
+</div>

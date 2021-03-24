@@ -1,0 +1,59 @@
+<div class="row justify-content-center">
+  <div class="col-auto mx-auto mb-2">
+      <p>画像を選択して詳細画面に移動します</p>
+    </div>
+  </div>
+</div>
+
+<!--検索の結果、対象がなければ「投稿がありません」と表示-->
+<% if posts.count == 0 %>
+  <div class="row justify-content-center">
+    <div class="col-auto mx-auto mb-2">
+      <p>投稿がありません</p>
+    </div>
+  </div>
+<% else %>
+  <!--1ページに10件のレコードをカードレイアウトで表示し、画面サイズに応じて下に移動-->
+  <div class="row justify-content-center">
+    <% posts.each do |post| %>
+      <div class="card-deck col-2.5 mx-1">
+        <div class="d-flex flex-wrap">
+          <div class="card border-light bg-light text-center mt-3" style="width: 13rem;">
+            <div class="card-header">
+              <%= post.genre %>
+            </div>
+            <%= link_to post_path(post.id) do %>
+              <%= attachment_image_tag post, :image, :fill, 200, 200, class:"product_index_image" %>
+            <% end %>
+            <div class="card-body">
+              <div class="card-title">
+                <small>
+                  <%= link_to user_path(post.user_id) do %>
+                    <%= attachment_image_tag post.user, :profile_image, :fill, 50, 50, class:"profile_image rounded-circle", fallback: "no_image.jpg", size:'30x30' %>
+                    <%= post.user.user_name %>
+                  <% end %>
+                </small>
+              </div>
+              <p class="card-text">
+                <strong><%= truncate(post.product_name, length:9) %></strong>
+              </p>
+              <div class="d-flex justify-content-around">
+                <small class="favorite-btn_<%= post.id %>"><%= render "favorites/favorite-btn", post: post %></small>
+                <small><%= post.post_comments.count %>コメント</small>
+              </div>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted"><%= post.created_at.strftime('%Y/%m/%d') %></small>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+<div class="row mt-5">
+  <div class="col-auto mx-auto">
+    <%= paginate posts %>
+  </div>
+</div>

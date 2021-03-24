@@ -1,0 +1,11 @@
+<!--お問い合わせ画面の入力忘れを表示するエラーメッセージ-->
+<div class="row justify-content-center alert-text">
+  <div class="col-auto mx-auto">
+    <% if contact.errors.any? %>
+      <div><%= contact.errors.count %>件のエラーが発生しました</div>
+      <% contact.errors.full_messages.each do |message| %>
+        <div>※<%= message %></div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

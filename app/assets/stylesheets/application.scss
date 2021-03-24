@@ -17,15 +17,270 @@
  @import 'font-awesome-sprockets';
  @import 'font-awesome';
 
- // .image {
- //  width: 208px;
- //  height: 208px;
- //  object-fit: cover;
- // }
- .image {
-  object-fit: contain;
+ // 全ページに1つのフォントを適用
+ * {
+  font-family: 'Noto Sans JP', sans-serif;
+ }
+
+ // ヘッダー、フッターのbackground-colorを同じ色にし、ボディの色も設定
+ header {
+  background-color: #FF9900;
+ }
+
+ footer {
+  background-color: #FF9900;
  }
 
  body {
-   background-image: image-url("aaa.jpg");
+  background-color: #FFFFEE;
+ }
+
+ // ヘッダーにナビゲーションバーを設置しフォントサイズ、カラムごとに｜で区切り
+ .nav-item {
+  font-size: 14px;
+ }
+
+ .navbar-nav li +li{
+  border-left: 1px solid white;
+  padding: 0 5px 0 5px;
+ }
+
+ // メイン部分の全ページにpaddingとmarginの余白調整
+ main {
+  padding-bottom: 10px;
+  .container {
+   padding-top: 30px;
+  }
+  .container-fluid {
+   padding-top: 30px;
+  }
+  .row {
+   margin-right: 0;
+   margin-left: 0;
+  }
+ }
+
+ // Font Awesomeで取得したいいねのハートマークの色を変更
+ .heart_red {
+  color: red;
+ }
+
+ .heart_red:hover {
+  color: red;
+ }
+
+ .heart_blue {
+  color: blue;
+ }
+
+ .heart_blue:hover {
+  color: blue;
+ }
+
+ // 投稿一覧で使用しているカード表示のレイアウト微調整
+ .card-body {
+  padding-bottom: 0;
+  padding-top: 10px;
+ }
+
+ .card-title {
+  margin-bottom: 5px;
+ }
+
+ .card-text {
+  margin-bottom: 15px;
+ }
+
+ .card-footer {
+  padding-top: 5px;
+  padding-bottom: 5px;
+ }
+
+ // 投稿詳細画面で表示される画像の調整
+ .product_show_image {
+  max-height: 453px;
+  max-width: 340px;
+ }
+
+ // 投稿一覧画面でカードの中に表示される画像の調整及び、マウスオンで少し不透明度調整
+ .product_index_image {
+  width: 206px;
+  height: 206px;
+  object-fit: cover;
+ }
+
+.product_index_image:hover {
+  opacity: 0.8;
+}
+
+ // 入力フォームで※印注意喚起部分の色を赤色に
+ .alert-text {
+  color: red;
+ }
+
+ // サイト内の<p>部分の配置を調整
+ p {
+  margin-bottom: 5px;
+ }
+
+ // ボタンの色を４色設定
+ .btn-skin{
+  background-color: #FFEBCD;
+ }
+
+ .btn-orange{
+  background-color: #FF9900;
+  color: #FFFFEE;
+ }
+
+ .btn-pink{
+  background-color: #de6770;
+  color: #FFFFEE;
+ }
+
+ .btn-blue {
+  background-color: #187fc4;
+  color: #FFFFEE;
+ }
+
+ // トップ画面の画像部分の調整
+ .main-visual {
+  width: 100%;
+  height: 400px;
+  background-image: image-url("main.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+ .bg-mask {
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.3);
+ }
+
+ // トップ画面の画像上に表示するテキスト部分
+ .main-visual-content {
+  width: 40%;
+  height: 200px;
+  text-align: center;
+  padding-top: 30px;
+ }
+
+ .main-visual-name {
+  font-size: 40px;
+ }
+
+ .main-visual-text {
+  font-size: 20px;
+  color: white;
+  margin-bottom: 30px;
+ }
+
+ // トップ画面をアバウト画面に表示している「ログイン」「新規登録」ボタンのデザイン調整
+ .top-btn {
+  width: 200px;
+  margin-top: 15px;
+  border-radius: 10px;
+ }
+
+ // トップ画面のアバウト画面の中段、見出し帯部分のサイズ
+ .main-text-title {
+  width: 100%;
+  height: 200px;
+  background-color: white;
+  border-bottom: 8px solid #f7f7f7;
+ }
+
+ // トップ画面の見出し内、文章のサイズ調整
+ .main-text-body {
+  width: 100%;
+  height: 300px;
+ }
+
+ .text-title {
+  text-align: center;
+  font-size: 50px;
+  padding-top: 60px;
+  color: #FF9900;
+ }
+
+ .text-body {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 30px;
+ }
+
+ .text-body-small {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 20px;
+ }
+
+ // トップ画面、アバウト画面の部分的に強調したい所をオレンジ色にする
+ .text-orange {
+  color: #FF9900;
+  font-size: 20px;
+ }
+
+ // アバウト画面のトップ画像のサイズ調整
+ .about-visual {
+  width: 100%;
+  height: 400px;
+  background-image: image-url("about.jpg");
+  background-size: cover;
+  background-position: center;
+ }
+
+ .about-bg-mask {
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.5);
+ }
+
+ // アバウト画面のトップ画像上に表示する文字の配置調整
+ .about-visual-content {
+  width: 100%;
+  height: 200px;
+  text-align: center;
+  padding-top: 250px;
+ }
+
+ .about-visual-text {
+  font-size: 40px;
+  color: white;
+ }
+
+ // アバウト画面の見出しない文章表示枠の大きさ調整
+ .about-text-body {
+  width: 100%;
+  height: 430px;
+ }
+
+ // アバウト画面の「ベビトピの便利な使い方」部分でカード内に表示している画像のサイズ調整
+ .about-image1 {
+  width: 100%;
+  height: 300px;
+  background-image: image-url("about1.png");
+  background-size: 100% 100%;
+ }
+
+ .about-image2 {
+  width: 100%;
+  height: 300px;
+  background-image: image-url("about2.png");
+  background-size: 100% 100%;
+ }
+
+ .about-image3 {
+  width: 100%;
+  height: 300px;
+  background-image: image-url("about3.png");
+  background-size: 100% 100%;
+ }
+
+ // アバウト画面の「ベビトピの便利な使い方」部分でカード内ヘッダーのデザイン調整
+ .card-header-about {
+  font-size: 20px;
+  background-color: #FF9900;
+  color: white;
+  height: 50px;
+  padding-top: 10px;
  }

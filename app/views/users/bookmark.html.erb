@@ -1,0 +1,19 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-auto mx-auto">
+      <h4>ブックマーク一覧画面</h4>
+    </div>
+  </div>
+
+  <!--ブックマークの保存件数が０の場合-->
+  <% if @posts.count == 0 %>
+    <div class="row">
+      <div class="col-auto mx-auto">
+        <h5>投稿がありません</h5>
+      </div>
+    </div>
+  <% else %>
+    <!--一覧画面の部分テンプレートを表示-->
+    <%= render "posts/form_index", posts: @posts %>
+  <% end %>
+</div>
