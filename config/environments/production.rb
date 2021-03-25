@@ -92,6 +92,8 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
+  mail = ENV['SMTP_USERNAME']
+  password = ENV['SMTP_PASSWORD']
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
   config.action_mailer.default_url_options = { protocol: 'https', host:'https://babytopics.net/'}
   config.action_mailer.raise_delivery_errors = true
@@ -101,8 +103,8 @@ Rails.application.configure do
     :address => "smtp.gmail.com",
     :port => 587,
     :domain => 'smtp.gmail.com',
-    :user_name => ENV['SMTP_USERNAME'],
-    :password => ENV['SMTP_PASSWORD'],
+    :user_name => mail,
+    :password => password,
     :authentication => 'login'
   }
 end
