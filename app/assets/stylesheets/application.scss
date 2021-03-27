@@ -36,8 +36,18 @@
  }
 
  // ヘッダーにナビゲーションバーを設置しフォントサイズ、カラムごとに｜で区切り
+ // マウスオーバー、フォーカスで色が濃くなるように色を設定
  .nav-item {
   font-size: 14px;
+ }
+
+ .nav-link {
+  color: #FFFFEE;
+ }
+
+ .nav-link:hover, .nav-link:focus {
+  background: white;
+  color: #FF9900;
  }
 
  .navbar-nav li +li{
@@ -123,23 +133,43 @@
   margin-bottom: 5px;
  }
 
- // ボタンの色を４色設定
+ // ボタンの色を４色設定、それぞれ色を指定した下の行に、
+ // マウスオーバー、フォーカスで色が濃くなるように色を設定
  .btn-skin{
   background-color: #FFEBCD;
  }
 
- .btn-orange{
+ .btn-skin:hover, .btn-skin:focus {
+  background: #FFCA82;
+ }
+
+ .btn-orange {
   background-color: #FF9900;
   color: #FFFFEE;
  }
 
- .btn-pink{
+ .btn-orange:hover, .btn-orange:focus {
+  background: #FF7200;
+  color: #FFFFEE;
+ }
+
+ .btn-pink {
   background-color: #de6770;
+  color: #FFFFEE;
+ }
+
+ .btn-pink:hover, .btn-pink:focus {
+  background: #cc2c38;
   color: #FFFFEE;
  }
 
  .btn-blue {
   background-color: #187fc4;
+  color: #FFFFEE;
+ }
+
+ .btn-blue:hover, .btn-blue:focus {
+  background: #194BC1;
   color: #FFFFEE;
  }
 
@@ -182,7 +212,7 @@
   border-radius: 10px;
  }
 
- // トップ画面のアバウト画面の中段、見出し帯部分のサイズ
+ // トップ画面とアバウト画面の中段、見出し帯部分のサイズ
  .main-text-title {
   width: 100%;
   height: 200px;
