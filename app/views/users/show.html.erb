@@ -43,16 +43,7 @@
     </div>
   </div>
 
-  <!--投稿の有無で表示内容を変更-->
-  <% if @posts.count == 0 %>
-    <div class="row">
-      <div class="col-auto mx-auto">
-        <h5>投稿がありません</h5>
-      </div>
-    </div>
-  <% else %>
-    <!--一覧画面表示の部分テンプレートを表示-->
-    <%= render "posts/form_index", posts: @posts %>
-  <% end %>
+  <!--一覧画面表示の部分テンプレートを表示-->
+  <%= render "posts/form_index", posts: @posts %>
 
 </div>
