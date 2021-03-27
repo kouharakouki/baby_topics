@@ -58,19 +58,19 @@
                 </li>
               <% else %>
                 <li class="nav-item">
-                  <strong><%= link_to "ベビトピについてと便利な使い方", about_path, class: 'nav-link' %></strong>
+                  <strong><%= link_to "ベビトピについてと便利な使い方", about_path, class: 'nav-link text-light' %></strong>
                 </li>
                 <li class="nav-item">
-                  <strong><%= link_to "新規登録", new_user_registration_path, class: 'nav-link' %></strong>
+                  <strong><%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-light' %></strong>
                 </li>
                 <li class="nav-item">
-                  <strong><%= link_to "ログイン", new_user_session_path, class: 'nav-link' %></strong>
+                  <strong><%= link_to "ログイン", new_user_session_path, class: 'nav-link text-light' %></strong>
                 </li>
                 <li class="nav-item">
-                  <strong><%= link_to "お問い合わせ", new_contact_path, class: 'nav-link' %></strong>
+                  <strong><%= link_to "お問い合わせ", new_contact_path, class: 'nav-link text-light' %></strong>
                 </li>
                 <li class="nav-item">
-                  <strong><%= link_to 'ゲストログイン(PF閲覧用)', users_guest_sign_in_path, class: 'nav-link', method: :post %></strong>
+                  <strong><%= link_to 'ゲストログイン(PF閲覧用)', users_guest_sign_in_path, class: 'nav-link text-light', method: :post %></strong>
                 </li>
               <% end %>
             </ul>
