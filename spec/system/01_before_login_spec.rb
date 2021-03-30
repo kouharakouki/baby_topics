@@ -247,7 +247,7 @@ describe '[STEP1] ユーザログイン前のテスト' do
       it '新規投稿を押すと、新規投稿に遷移する' do
         new_post_link = find_all('a')[5].native.inner_text
         new_post_link = new_post_link.gsub(/\n/, '').gsub(/\A\s*/, '').gsub(/\s*\Z/, '')
-        click_link new_post_link
+        click_link new_post_link, match: :first
         is_expected.to eq '/posts/new'
       end
       it 'お問い合わせを押すと、お問い合わせに遷移する' do
