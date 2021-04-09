@@ -15,5 +15,10 @@
   <% else %>
     <!--一覧画面の部分テンプレートを表示-->
     <%= render "posts/form_index", posts: @posts %>
+    <div class="row mt-5">
+      <div class="col-auto mx-auto">
+        <%= paginate @posts %>
+      </div>
+    </div>
   <% end %>
 </div>
