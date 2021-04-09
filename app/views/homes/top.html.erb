@@ -102,48 +102,11 @@
     <strong>人気投稿記事一覧</strong>
   </P>
 </div>
-<div class="text-body-small">
-  <P>※詳細画面閲覧にはログインが必要です</P>
-</div>
 
 <div class="container-fluid">
-  <div class="row justify-content-center mb-3">
-    <!--いいねの多い順番に５件のレコードを@postsに代入し表示-->
-    <% @posts.each do |post| %>
-      <div class="card-deck col-2.5 mx-1">
-        <div class="d-flex flex-wrap">
-          <div class="card border-light bg-light text-center mt-3" style="width: 13rem;">
-            <div class="card-header">
-              <%= post.genre %>
-            </div>
-            <%= link_to post_path(post.id) do %>
-              <%= attachment_image_tag post, :image, :fill, 200, 200, class:"product_index_image" %>
-            <% end %>
-            <div class="card-body">
-              <div class="card-title">
-                <small>
-                  <%= link_to user_path(post.user_id) do %>
-                    <%= attachment_image_tag post.user, :profile_image, :fill, 50, 50, class:"profile_image rounded-circle", fallback: "no_image.jpg", size:'30x30' %>
-                    <%= post.user.user_name %>
-                  <% end %>
-                </small>
-              </div>
-              <p class="card-text">
-                <strong><%= truncate(post.product_name, length:9) %></strong>
-              </p>
-              <div class="d-flex justify-content-around">
-                <small><%= post.favorites.count %>いいね</small>
-                <small><%= post.post_comments.count %>コメント</small>
-              </div>
-            </div>
-            <div class="card-footer">
-              <small class="text-muted"><%= post.created_at.strftime('%Y/%m/%d') %></small>
-            </div>
-          </div>
-        </div>
-      </div>
-    <% end %>
-  </div>
+  <!--一覧画面の部分テンプレート-->
+  <!--いいねの多いトップ５の記事を表示-->
+  <%= render "posts/form_index", posts: @posts %>
 
   <!--ログインしていなければログイン・新規アカウント作成ボタンを表示-->
   <% if user_signed_in? %>
