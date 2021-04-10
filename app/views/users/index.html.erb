@@ -71,12 +71,8 @@
           </tbody>
         <% end %>
       </table>
-      <div class="row mt-5">
-        <div class="col-auto mx-auto">
-          <!--1ページに10件のデータを表示-->
-          <%= paginate @users %>
-        </div>
-      </div>
+      <!--ページネーションの部分テンプレートを表示-->
+      <%= render "users/page", page: @users %>
     </div>
   </div>
 </div>

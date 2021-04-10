@@ -39,7 +39,7 @@ class UsersController < ApplicationController
   def followings
     @user = User.find_by(id: params[:user_id])
     if @user.present?
-      @followings = @user.following_users
+      @followings = @user.following_users.page(params[:page]).per(10)
     else
       redirect_to user_path(current_user), alert: "不正なアクセスです。"
     end
@@ -49,7 +49,7 @@ class UsersController < ApplicationController
   def followers
     @user = User.find_by(id: params[:user_id])
     if @user.present?
-      @followers = @user.follower_users
+      @followers = @user.follower_users.page(params[:page]).per(10)
     else
       redirect_to user_path(current_user), alert: "不正なアクセスです。"
     end
