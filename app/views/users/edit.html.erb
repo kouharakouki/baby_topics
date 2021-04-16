@@ -11,7 +11,7 @@
   <%= form_with model: @user, url: user_path, local:true do |f| %>
     <div class="row justify-content-center mt-4">
       <div class="col-auto mx-auto">
-        <%= attachment_image_tag(@user, :profile_image, :fill, 200, 200, fallback: "no_image.jpg", size:'200x200', class: "rounded-circle" ) %>
+        <%= attachment_image_tag @user, :profile_image, :fill, 200, 200, fallback: "no_image.jpg", class: "rounded-circle profile-image" %>
       </div>
     </div>
     <div class="from-group">
