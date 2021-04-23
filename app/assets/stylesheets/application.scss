@@ -114,9 +114,9 @@
   object-fit: cover;
  }
 
-.product_index_image:hover {
+ .product_index_image:hover {
   opacity: 0.8;
-}
+ }
 
  // 入力フォームで※印注意喚起部分の色を赤色に
  .alert-text {
@@ -144,6 +144,16 @@
  }
 
  .btn-orange:hover, .btn-orange:focus {
+  background: #FF7200;
+  color: #FFFFEE;
+ }
+
+ .my-page-btn-orange {
+  background-color: #FF9900;
+  color: #FFFFEE;
+ }
+
+ .my-page-btn-orange:hover, .my-page-btn-orange:focus {
   background: #FF7200;
   color: #FFFFEE;
  }
@@ -328,9 +338,9 @@
   height: 200px;
   object-fit: cover;
  }
- 
- 
- // スマホサイズ縦のレスポンシブ
+
+
+ // スマホサイズ縦のレスポンシブ480px~370pxまで対応
  @media (max-width: 480px){
 
   // トップ画面のレスポンシブ対応
@@ -426,4 +436,25 @@
    padding: 0;
   }
 
+  // アカウント一覧、フォロー一覧画面に適用
+  .index-table {
+   font-size: 10px;
+  }
+
+  // マイページのボタン配置調整
+  .my-page-btn-orange {
+   margin-left: 40px;
+   margin-bottom: 10px;
+  }
+
+  // ユーザー詳細ページのプロフィール画像配置調整
+  .show-image {
+   margin-left: 50px;
+   margin-bottom: 10px;
+  }
+
+  // ヘッダーのロゴサイズ変更
+  .logo-image {
+   width: 120px;
+  }
  }
