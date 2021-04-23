@@ -215,7 +215,7 @@
   border-bottom: 8px solid #f7f7f7;
  }
 
- // トップ画面の見出し内、文章のサイズ調整
+ // トップ、アバウト画面の見出し内、文章のサイズ調整
  .main-text-body {
   width: 100%;
   height: 300px;
@@ -234,7 +234,19 @@
   font-size: 30px;
  }
 
+ .text-body-about {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 30px;
+ }
+
  .text-body-small {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 20px;
+ }
+
+ .text-body-small-about {
   text-align: center;
   margin-top: 30px;
   font-size: 20px;
@@ -315,4 +327,103 @@
   width: 200px;
   height: 200px;
   object-fit: cover;
+ }
+ 
+ 
+ // スマホサイズ縦のレスポンシブ
+ @media (max-width: 480px){
+
+  // トップ画面のレスポンシブ対応
+  .main-visual {
+   width: 100%;
+   height: 300px;
+  }
+
+  .main-visual-content {
+  width: 100%;
+  padding-left: 20px;
+  text-align: left;
+  padding-top: 10px;
+  }
+
+  .main-visual-name {
+   font-size: 25px;
+  }
+
+  .main-visual-text {
+   font-size: 15px;
+   color: white;
+   margin-bottom: 30px;
+  }
+
+  .top-btn {
+   width: 138px;
+   margin-top: 15px;
+   border-radius: 10px;
+   }
+
+  .text-body {
+   margin-top: 20px;
+   font-size: 25px;
+  }
+
+  .text-body-small {
+   margin-top: 20px;
+   font-size: 10px;
+  }
+
+  .main-text-body {
+   height: 190px;
+  }
+
+  .text-title {
+   font-size: 30px;
+   padding-top: 25px;
+  }
+
+  .main-text-title {
+   height: 100px;
+  }
+
+  .product_show_image {
+   max-width: 280px;
+  }
+
+  // アバウト画面のレスポンシブ対応
+  .about-visual {
+   height: 300px;
+  }
+
+  .about-visual-content {
+   padding-top: 200px;
+  }
+
+  .about-visual-text {
+   font-size: 22px;
+  }
+
+  .text-body-about {
+   margin-top: 20px;
+   font-size: 26px;
+  }
+
+  .text-body-small-about {
+   margin-top: 20px;
+   font-size: 10px;
+  }
+
+  .text-orange {
+   font-size: 10px;
+  }
+
+  .about-text-body {
+   height: 300px;
+  }
+
+  // ヘッダーのハンバーガーメニュー表示の時に区切り線が消えるように
+  .navbar-nav li +li{
+   border: none;
+   padding: 0;
+  }
+
  }
